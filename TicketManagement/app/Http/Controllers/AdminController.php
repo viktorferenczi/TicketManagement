@@ -4,10 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Session;
+
 class AdminController extends Controller
 {
-    public function index(){
+
+    public function adminVerification(){
         return view("adminVerification.index");
+    }
+
+    public function index(){
+        return view("admin.index");
     }
 
     public function verification(Request $request){
@@ -15,8 +22,11 @@ class AdminController extends Controller
             'accessCode' => 'required'
         ]);
 
-        if (env('ADMIN_VERIFICATION') == $data['accessCode']){
-           return redirect('/home');
+        $token = $data['accessCode'];
+
+        if (env('ADMIN_VERIFICATION') == $token){
+            session(['verification' => $token]);
+            return redirect('/login');
         }else {
             return redirect()->back()->with('message','Wrong verification code.');
         }

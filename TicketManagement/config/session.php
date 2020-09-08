@@ -198,4 +198,7 @@ return [
 
     'same_site' => 'lax',
 
+    //generate an empty key
+    'verification' => ''
+
 ];

@@ -6,20 +6,29 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
 */
 
+Auth::routes();
+
+/*
+ * Customer
+ */
 Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/adminpanel','AdminController@index')->name('adminVerification.index');
+/*
+ * Admin verification
+ */
+Route::get('/adminpanel','AdminController@adminVerification')->name('adminVerification.index');
 Route::post('/adminpanel/verification','AdminController@verification')->name('adminVerification.verification');
+
+/*
+ * Admin
+ */
+Route::get('/adminpanel/index', 'AdminController@index')->name('admin.index');
+
+//Route::get('/customers');
+//Route::get('/tickets');
+
+//Route::get('/{customer}/tickets');

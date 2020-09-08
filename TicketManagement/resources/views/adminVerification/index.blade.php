@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>Ticket Manager</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -25,13 +25,12 @@
                     @error('accessCode')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
-                <h4>Please verify you are a stuff member.</h4>
+                <h4>Please enter you verification code.</h4>
                 <div class="card">
                     <div class="card-header">{{ __('Verification') }}</div>
                     <div class="card-body">
                         <form method="POST" action="/adminpanel/verification">
                             @csrf
-
                             <div class="form-group row">
                                 <label for="accessCode" class="col-md-4 col-form-label text-md-right">{{ __('Code:') }}</label>
 
@@ -39,7 +38,6 @@
                                     <input id="accessCode" type="text" class="form-control @error('accessCode') is-invalid @enderror" name="accessCode">
                                 </div>
                             </div>
-
                             <div class="form-group row mb-0">
                                 <div class="col-md-8 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
