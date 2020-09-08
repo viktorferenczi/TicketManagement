@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 class AdminVerificationController extends Controller
 {
+
     public function adminVerification(){
         return view("adminVerification.index");
     }

@@ -74,7 +74,7 @@
                         <a href="/adminpanel/index">Admin Panel</a>
                     @else
                         <a href="/ticket/create">Submit Ticket</a>
-                        <a href="/adminpanel">Admin</a>
+                        <a href="/adminpanel/index">Admin</a>
                     @endauth
                 </div>
             @endif
