@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-
+use Closure;
 
 
 class CheckVerification
@@ -14,11 +14,11 @@ class CheckVerification
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request)
+    public function handle($request,Closure $next)
     {
         if (session('verification') == "") {
             return redirect('/adminpanel');
         }
-        return redirect("/adminpanel/index");
+        return $next($request);
     }
 }

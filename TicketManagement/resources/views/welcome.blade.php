@@ -71,7 +71,7 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/index') }}">Admin</a>
+                        <a href="/adminpanel/index">Admin Panel</a>
                     @else
                         <a href="/ticket/create">Submit Ticket</a>
                         <a href="/adminpanel">Admin</a>
