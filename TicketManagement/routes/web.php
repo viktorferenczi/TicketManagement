@@ -20,8 +20,8 @@ Route::get('/', function () {
 /*
  * Admin verification
  */
-Route::get('/adminpanel','AdminController@adminVerification')->name('adminVerification.index');
-Route::post('/adminpanel/verification','AdminController@verification')->name('adminVerification.verification');
+Route::get('/adminpanel','AdminVerificationController@adminVerification')->name('adminVerification.index');
+Route::post('/adminpanel/verification','AdminVerificationController@verification')->name('adminVerification.verification');
 
 /*
  * Admin
