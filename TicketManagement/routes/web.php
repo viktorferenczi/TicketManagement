@@ -21,4 +21,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-//Route::get('/admin','AdminController')
+Route::get('/adminpanel','AdminController@index')->name('adminVerification.index');
+Route::post('/adminpanel/verification','AdminController@verification')->name('adminVerification.verification');

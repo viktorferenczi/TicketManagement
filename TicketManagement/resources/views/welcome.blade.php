@@ -6,6 +6,9 @@
 
         <title>Laravel</title>
 
+        <!-- Scripts -->
+        <script type="text/javascript" src="{{ asset('js/adminVerification.js') }}"></script>
+
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
@@ -70,14 +73,17 @@
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
                     @else
-                        <a href="/admin">Login</a>
+                        <a href="/ticket/create">Submit Ticket</a>
+                        <a href="/adminpanel">Admin</a>
                     @endauth
                 </div>
             @endif
-
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Welcome to Ticket Manager
+                </div>
+                <div class="m-b-md">
+                    Submit your ticket to our system and we will be ready to help you!
                 </div>
             </div>
         </div>

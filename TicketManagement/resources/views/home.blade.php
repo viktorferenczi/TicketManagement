@@ -3,6 +3,6 @@
 @section('content')
 <div class="container">
 
-    adminxd
+    admin
 </div>
 @endsection
