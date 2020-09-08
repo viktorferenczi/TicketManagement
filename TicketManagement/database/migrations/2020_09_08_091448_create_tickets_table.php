@@ -22,7 +22,7 @@ class CreateTicketsTable extends Migration
             $table->timestamps();
 
 
-            $table->index("user_id");
+            $table->index("customer_id");
         });
     }
 

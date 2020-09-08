@@ -15,8 +15,8 @@ class Ticket extends Model
         'title', 'description',
     ];
 
-    public function user(){
-        return $this->belongsTo(User::class); //relation to user
+    public function customer(){
+        return $this->belongsTo(Customer::class); //relation to customer
     }
 
 }
