@@ -8,7 +8,7 @@ class AdminVerificationController extends Controller
 {
 
     public function index(){
-        return view("adminVerification.index");
+        return view("admin.adminVerification.index");
     }
 
     public function create(Request $request){

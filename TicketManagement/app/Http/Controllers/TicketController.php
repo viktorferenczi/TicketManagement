@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 class TicketController extends Controller
 {
    public function index(){
-       return view('ticketSubmission.index');
+       return view('ticket.ticketSubmission.index');
    }
 
    public function create(Request $request){

@@ -20,8 +20,8 @@ Route::get('/', function () {
 /*
  * Ticket(s)
  */
-Route::get('/ticket','TicketController@index')->name('ticketSubmission.index');
-Route::post('/ticket/create','TicketController@create')->name('ticketSubmission.index');
+Route::get('/ticket','TicketController@index')->name('ticket.ticketSubmission.index');
+Route::post('/ticket/create','TicketController@create')->name('ticket.ticketSubmission.index');
 
 Route::get('/tickets','TicketController@list')->name('ticket.ticketList.index');
 
@@ -31,7 +31,7 @@ Route::get('/tickets','TicketController@list')->name('ticket.ticketList.index');
 /*
  * Admin verification
  */
-Route::get('/adminpanel','AdminVerificationController@index')->name('adminVerification.index');
+Route::get('/adminpanel','AdminVerificationController@index')->name('admin.adminVerification.index');
 Route::post('/adminpanel/verification','AdminVerificationController@create');
 
 /*
