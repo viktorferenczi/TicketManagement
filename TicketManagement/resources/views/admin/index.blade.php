@@ -9,7 +9,7 @@
             <a href="{{ route('customers.index') }}">View Customers</a>
         </li>
         <li style="list-style-type: none">
-            <a href="">View Tickets</a>
+            <a href="{{ route('ticket.ticketList.index') }}">View Tickets</a>
         </li>
     </ul>
 </div>
