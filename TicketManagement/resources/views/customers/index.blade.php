@@ -2,16 +2,18 @@
 
 @section('content')
     <div class="container pt-5">
+        <h4>Customers:</h4>
+        <hr>
        @foreach($customers as $customer)
-           <div class="card">
+           <div class="card mb-5">
                <div class="card-header">
-                   {{$customer->name}}
+                   <strong>Customer name:</strong> {{$customer->name}}
                </div>
                <div class="card-body">
-                   {{$customer->email}}
+                  <strong>Customer email address:</strong> {{$customer->email}}
                </div>
                <div class="card-footer">
-                   Customer has: {$customer->ticketCount tickets submitted.
+                   <strong>Customer has:</strong> {$customer->ticketCount tickets submitted.
                </div>
            </div>
         @endforeach
