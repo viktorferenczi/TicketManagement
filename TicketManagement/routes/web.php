@@ -31,11 +31,12 @@ Route::get('/adminpanel','AdminVerificationController@adminVerification')->name(
 Route::post('/adminpanel/verification','AdminVerificationController@verification')->name('adminVerification.verification');
 
 /*
- * Admin
+ * Admin access
  */
 Route::get('/adminpanel/index', 'AdminController@index')->name('admin.index');
 
-//Route::get('/customers');
+Route::get('/customers','CustomerController@customerList')->name('customers.customerList');
+//Route::get('/{customer}/tickets');
+
 //Route::get('/tickets');
 
-//Route::get('/{customer}/tickets');

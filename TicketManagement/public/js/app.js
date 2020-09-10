@@ -2792,7 +2792,7 @@ __webpack_require__.r(__webpack_exports__);
         if (_this3._config.pause === 'hover') {
           // If it's a touch-enabled device, mouseenter/leave are fired as
           // part of the mouse compatibility events on first tap - the carousel
-          // would stop cycling until user tapped out of it;
+          // would stop cycling until customers tapped out of it;
           // here, we listen for touchend, explicitly pause the carousel
           // (as if it's the second time we tap on it, mouseenter compat event
           // is NOT fired) and after a timeout (to allow for mouse compatibility
@@ -8113,7 +8113,7 @@ getText = Sizzle.getText = function( elem ) {
 
 Expr = Sizzle.selectors = {
 
-	// Can be adjusted by the user
+	// Can be adjusted by the customers
 	cacheLength: 50,
 
 	createPseudo: markFunction,
@@ -8414,7 +8414,7 @@ Expr = Sizzle.selectors = {
 				fn = Expr.pseudos[ pseudo ] || Expr.setFilters[ pseudo.toLowerCase() ] ||
 					Sizzle.error( "unsupported pseudo: " + pseudo );
 
-			// The user may use createPseudo to indicate that
+			// The customers may use createPseudo to indicate that
 			// arguments are needed to create the filter function
 			// just as Sizzle does
 			if ( fn[ expando ] ) {
@@ -10751,9 +10751,9 @@ var dataUser = new Data();
 //	1. Enforce API surface and semantic compatibility with 1.9.x branch
 //	2. Improve the module's maintainability by reducing the storage
 //		paths to a single mechanism.
-//	3. Use the same single mechanism to support "private" and "user" data.
-//	4. _Never_ expose "private" data to user code (TODO: Drop _data, _removeData)
-//	5. Avoid exposing implementation details on user objects (eg. expando properties)
+//	3. Use the same single mechanism to support "private" and "customers" data.
+//	4. _Never_ expose "private" data to customers code (TODO: Drop _data, _removeData)
+//	5. Avoid exposing implementation details on customers objects (eg. expando properties)
 //	6. Provide a clear path for implementation upgrade to WeakMap in 2014
 
 var rbrace = /^(?:\{[\w\W]*\}|\[[\w\W]*\])$/,
@@ -12382,7 +12382,7 @@ function cloneCopyEvent( src, dest ) {
 		}
 	}
 
-	// 2. Copy user data
+	// 2. Copy customers data
 	if ( dataUser.hasData( src ) ) {
 		udataOld = dataUser.access( src );
 		udataCur = jQuery.extend( {}, udataOld );
@@ -13265,7 +13265,7 @@ jQuery.extend( {
 
 		// Make sure that we're working with the right name. We don't
 		// want to query the value if it is a CSS custom property
-		// since they are user-defined.
+		// since they are customers-defined.
 		if ( !isCustomProp ) {
 			name = finalPropName( origName );
 		}
@@ -13334,7 +13334,7 @@ jQuery.extend( {
 
 		// Make sure that we're working with the right name. We don't
 		// want to modify the value if it is a CSS custom property
-		// since they are user-defined.
+		// since they are customers-defined.
 		if ( !isCustomProp ) {
 			name = finalPropName( origName );
 		}
@@ -16218,7 +16218,7 @@ jQuery._evalUrl = function( url, options, doc ) {
 	return jQuery.ajax( {
 		url: url,
 
-		// Make this explicit, since user can override this through ajaxSetup (#11264)
+		// Make this explicit, since customers can override this through ajaxSetup (#11264)
 		type: "GET",
 		dataType: "script",
 		cache: true,
@@ -16737,7 +16737,7 @@ jQuery.fn.load = function( url, params, callback ) {
 
 			// If "type" variable is undefined, then "GET" method will be used.
 			// Make value of this field explicit since
-			// user can override it through ajaxSetup method
+			// customers can override it through ajaxSetup method
 			type: type || "GET",
 			dataType: "html",
 			data: params
@@ -24369,25 +24369,25 @@ return jQuery;
      * @returns {Array} Returns the slice of `array`.
      * @example
      *
-     * var users = [
-     *   { 'user': 'barney',  'active': true },
-     *   { 'user': 'fred',    'active': false },
-     *   { 'user': 'pebbles', 'active': false }
+     * var customers = [
+     *   { 'customers': 'barney',  'active': true },
+     *   { 'customers': 'fred',    'active': false },
+     *   { 'customers': 'pebbles', 'active': false }
      * ];
      *
-     * _.dropRightWhile(users, function(o) { return !o.active; });
+     * _.dropRightWhile(customers, function(o) { return !o.active; });
      * // => objects for ['barney']
      *
      * // The `_.matches` iteratee shorthand.
-     * _.dropRightWhile(users, { 'user': 'pebbles', 'active': false });
+     * _.dropRightWhile(customers, { 'customers': 'pebbles', 'active': false });
      * // => objects for ['barney', 'fred']
      *
      * // The `_.matchesProperty` iteratee shorthand.
-     * _.dropRightWhile(users, ['active', false]);
+     * _.dropRightWhile(customers, ['active', false]);
      * // => objects for ['barney']
      *
      * // The `_.property` iteratee shorthand.
-     * _.dropRightWhile(users, 'active');
+     * _.dropRightWhile(customers, 'active');
      * // => objects for ['barney', 'fred', 'pebbles']
      */
     function dropRightWhile(array, predicate) {
@@ -24410,25 +24410,25 @@ return jQuery;
      * @returns {Array} Returns the slice of `array`.
      * @example
      *
-     * var users = [
-     *   { 'user': 'barney',  'active': false },
-     *   { 'user': 'fred',    'active': false },
-     *   { 'user': 'pebbles', 'active': true }
+     * var customers = [
+     *   { 'customers': 'barney',  'active': false },
+     *   { 'customers': 'fred',    'active': false },
+     *   { 'customers': 'pebbles', 'active': true }
      * ];
      *
-     * _.dropWhile(users, function(o) { return !o.active; });
+     * _.dropWhile(customers, function(o) { return !o.active; });
      * // => objects for ['pebbles']
      *
      * // The `_.matches` iteratee shorthand.
-     * _.dropWhile(users, { 'user': 'barney', 'active': false });
+     * _.dropWhile(customers, { 'customers': 'barney', 'active': false });
      * // => objects for ['fred', 'pebbles']
      *
      * // The `_.matchesProperty` iteratee shorthand.
-     * _.dropWhile(users, ['active', false]);
+     * _.dropWhile(customers, ['active', false]);
      * // => objects for ['pebbles']
      *
      * // The `_.property` iteratee shorthand.
-     * _.dropWhile(users, 'active');
+     * _.dropWhile(customers, 'active');
      * // => objects for ['barney', 'fred', 'pebbles']
      */
     function dropWhile(array, predicate) {
@@ -24492,25 +24492,25 @@ return jQuery;
      * @returns {number} Returns the index of the found element, else `-1`.
      * @example
      *
-     * var users = [
-     *   { 'user': 'barney',  'active': false },
-     *   { 'user': 'fred',    'active': false },
-     *   { 'user': 'pebbles', 'active': true }
+     * var customers = [
+     *   { 'customers': 'barney',  'active': false },
+     *   { 'customers': 'fred',    'active': false },
+     *   { 'customers': 'pebbles', 'active': true }
      * ];
      *
-     * _.findIndex(users, function(o) { return o.user == 'barney'; });
+     * _.findIndex(customers, function(o) { return o.customers == 'barney'; });
      * // => 0
      *
      * // The `_.matches` iteratee shorthand.
-     * _.findIndex(users, { 'user': 'fred', 'active': false });
+     * _.findIndex(customers, { 'customers': 'fred', 'active': false });
      * // => 1
      *
      * // The `_.matchesProperty` iteratee shorthand.
-     * _.findIndex(users, ['active', false]);
+     * _.findIndex(customers, ['active', false]);
      * // => 0
      *
      * // The `_.property` iteratee shorthand.
-     * _.findIndex(users, 'active');
+     * _.findIndex(customers, 'active');
      * // => 2
      */
     function findIndex(array, predicate, fromIndex) {
@@ -24539,25 +24539,25 @@ return jQuery;
      * @returns {number} Returns the index of the found element, else `-1`.
      * @example
      *
-     * var users = [
-     *   { 'user': 'barney',  'active': true },
-     *   { 'user': 'fred',    'active': false },
-     *   { 'user': 'pebbles', 'active': false }
+     * var customers = [
+     *   { 'customers': 'barney',  'active': true },
+     *   { 'customers': 'fred',    'active': false },
+     *   { 'customers': 'pebbles', 'active': false }
      * ];
      *
-     * _.findLastIndex(users, function(o) { return o.user == 'pebbles'; });
+     * _.findLastIndex(customers, function(o) { return o.customers == 'pebbles'; });
      * // => 2
      *
      * // The `_.matches` iteratee shorthand.
-     * _.findLastIndex(users, { 'user': 'barney', 'active': true });
+     * _.findLastIndex(customers, { 'customers': 'barney', 'active': true });
      * // => 0
      *
      * // The `_.matchesProperty` iteratee shorthand.
-     * _.findLastIndex(users, ['active', false]);
+     * _.findLastIndex(customers, ['active', false]);
      * // => 2
      *
      * // The `_.property` iteratee shorthand.
-     * _.findLastIndex(users, 'active');
+     * _.findLastIndex(customers, 'active');
      * // => 0
      */
     function findLastIndex(array, predicate, fromIndex) {
@@ -25490,25 +25490,25 @@ return jQuery;
      * @returns {Array} Returns the slice of `array`.
      * @example
      *
-     * var users = [
-     *   { 'user': 'barney',  'active': true },
-     *   { 'user': 'fred',    'active': false },
-     *   { 'user': 'pebbles', 'active': false }
+     * var customers = [
+     *   { 'customers': 'barney',  'active': true },
+     *   { 'customers': 'fred',    'active': false },
+     *   { 'customers': 'pebbles', 'active': false }
      * ];
      *
-     * _.takeRightWhile(users, function(o) { return !o.active; });
+     * _.takeRightWhile(customers, function(o) { return !o.active; });
      * // => objects for ['fred', 'pebbles']
      *
      * // The `_.matches` iteratee shorthand.
-     * _.takeRightWhile(users, { 'user': 'pebbles', 'active': false });
+     * _.takeRightWhile(customers, { 'customers': 'pebbles', 'active': false });
      * // => objects for ['pebbles']
      *
      * // The `_.matchesProperty` iteratee shorthand.
-     * _.takeRightWhile(users, ['active', false]);
+     * _.takeRightWhile(customers, ['active', false]);
      * // => objects for ['fred', 'pebbles']
      *
      * // The `_.property` iteratee shorthand.
-     * _.takeRightWhile(users, 'active');
+     * _.takeRightWhile(customers, 'active');
      * // => []
      */
     function takeRightWhile(array, predicate) {
@@ -25531,25 +25531,25 @@ return jQuery;
      * @returns {Array} Returns the slice of `array`.
      * @example
      *
-     * var users = [
-     *   { 'user': 'barney',  'active': false },
-     *   { 'user': 'fred',    'active': false },
-     *   { 'user': 'pebbles', 'active': true }
+     * var customers = [
+     *   { 'customers': 'barney',  'active': false },
+     *   { 'customers': 'fred',    'active': false },
+     *   { 'customers': 'pebbles', 'active': true }
      * ];
      *
-     * _.takeWhile(users, function(o) { return !o.active; });
+     * _.takeWhile(customers, function(o) { return !o.active; });
      * // => objects for ['barney', 'fred']
      *
      * // The `_.matches` iteratee shorthand.
-     * _.takeWhile(users, { 'user': 'barney', 'active': false });
+     * _.takeWhile(customers, { 'customers': 'barney', 'active': false });
      * // => objects for ['barney']
      *
      * // The `_.matchesProperty` iteratee shorthand.
-     * _.takeWhile(users, ['active', false]);
+     * _.takeWhile(customers, ['active', false]);
      * // => objects for ['barney', 'fred']
      *
      * // The `_.property` iteratee shorthand.
-     * _.takeWhile(users, 'active');
+     * _.takeWhile(customers, 'active');
      * // => []
      */
     function takeWhile(array, predicate) {
@@ -25985,17 +25985,17 @@ return jQuery;
      * @returns {Object} Returns the new `lodash` wrapper instance.
      * @example
      *
-     * var users = [
-     *   { 'user': 'barney',  'age': 36 },
-     *   { 'user': 'fred',    'age': 40 },
-     *   { 'user': 'pebbles', 'age': 1 }
+     * var customers = [
+     *   { 'customers': 'barney',  'age': 36 },
+     *   { 'customers': 'fred',    'age': 40 },
+     *   { 'customers': 'pebbles', 'age': 1 }
      * ];
      *
      * var youngest = _
-     *   .chain(users)
+     *   .chain(customers)
      *   .sortBy('age')
      *   .map(function(o) {
-     *     return o.user + ' is ' + o.age;
+     *     return o.customers + ' is ' + o.age;
      *   })
      *   .head()
      *   .value();
@@ -26112,22 +26112,22 @@ return jQuery;
      * @returns {Object} Returns the new `lodash` wrapper instance.
      * @example
      *
-     * var users = [
-     *   { 'user': 'barney', 'age': 36 },
-     *   { 'user': 'fred',   'age': 40 }
+     * var customers = [
+     *   { 'customers': 'barney', 'age': 36 },
+     *   { 'customers': 'fred',   'age': 40 }
      * ];
      *
      * // A sequence without explicit chaining.
-     * _(users).head();
-     * // => { 'user': 'barney', 'age': 36 }
+     * _(customers).head();
+     * // => { 'customers': 'barney', 'age': 36 }
      *
      * // A sequence with explicit chaining.
-     * _(users)
+     * _(customers)
      *   .chain()
      *   .head()
-     *   .pick('user')
+     *   .pick('customers')
      *   .value();
-     * // => { 'user': 'barney' }
+     * // => { 'customers': 'barney' }
      */
     function wrapperChain() {
       return chain(this);
@@ -26373,21 +26373,21 @@ return jQuery;
      * _.every([true, 1, null, 'yes'], Boolean);
      * // => false
      *
-     * var users = [
-     *   { 'user': 'barney', 'age': 36, 'active': false },
-     *   { 'user': 'fred',   'age': 40, 'active': false }
+     * var customers = [
+     *   { 'customers': 'barney', 'age': 36, 'active': false },
+     *   { 'customers': 'fred',   'age': 40, 'active': false }
      * ];
      *
      * // The `_.matches` iteratee shorthand.
-     * _.every(users, { 'user': 'barney', 'active': false });
+     * _.every(customers, { 'customers': 'barney', 'active': false });
      * // => false
      *
      * // The `_.matchesProperty` iteratee shorthand.
-     * _.every(users, ['active', false]);
+     * _.every(customers, ['active', false]);
      * // => true
      *
      * // The `_.property` iteratee shorthand.
-     * _.every(users, 'active');
+     * _.every(customers, 'active');
      * // => false
      */
     function every(collection, predicate, guard) {
@@ -26415,28 +26415,28 @@ return jQuery;
      * @see _.reject
      * @example
      *
-     * var users = [
-     *   { 'user': 'barney', 'age': 36, 'active': true },
-     *   { 'user': 'fred',   'age': 40, 'active': false }
+     * var customers = [
+     *   { 'customers': 'barney', 'age': 36, 'active': true },
+     *   { 'customers': 'fred',   'age': 40, 'active': false }
      * ];
      *
-     * _.filter(users, function(o) { return !o.active; });
+     * _.filter(customers, function(o) { return !o.active; });
      * // => objects for ['fred']
      *
      * // The `_.matches` iteratee shorthand.
-     * _.filter(users, { 'age': 36, 'active': true });
+     * _.filter(customers, { 'age': 36, 'active': true });
      * // => objects for ['barney']
      *
      * // The `_.matchesProperty` iteratee shorthand.
-     * _.filter(users, ['active', false]);
+     * _.filter(customers, ['active', false]);
      * // => objects for ['fred']
      *
      * // The `_.property` iteratee shorthand.
-     * _.filter(users, 'active');
+     * _.filter(customers, 'active');
      * // => objects for ['barney']
      *
      * // Combining several predicates using `_.overEvery` or `_.overSome`.
-     * _.filter(users, _.overSome([{ 'age': 36 }, ['age', 40]]));
+     * _.filter(customers, _.overSome([{ 'age': 36 }, ['age', 40]]));
      * // => objects for ['fred', 'barney']
      */
     function filter(collection, predicate) {
@@ -26459,25 +26459,25 @@ return jQuery;
      * @returns {*} Returns the matched element, else `undefined`.
      * @example
      *
-     * var users = [
-     *   { 'user': 'barney',  'age': 36, 'active': true },
-     *   { 'user': 'fred',    'age': 40, 'active': false },
-     *   { 'user': 'pebbles', 'age': 1,  'active': true }
+     * var customers = [
+     *   { 'customers': 'barney',  'age': 36, 'active': true },
+     *   { 'customers': 'fred',    'age': 40, 'active': false },
+     *   { 'customers': 'pebbles', 'age': 1,  'active': true }
      * ];
      *
-     * _.find(users, function(o) { return o.age < 40; });
+     * _.find(customers, function(o) { return o.age < 40; });
      * // => object for 'barney'
      *
      * // The `_.matches` iteratee shorthand.
-     * _.find(users, { 'age': 1, 'active': true });
+     * _.find(customers, { 'age': 1, 'active': true });
      * // => object for 'pebbles'
      *
      * // The `_.matchesProperty` iteratee shorthand.
-     * _.find(users, ['active', false]);
+     * _.find(customers, ['active', false]);
      * // => object for 'fred'
      *
      * // The `_.property` iteratee shorthand.
-     * _.find(users, 'active');
+     * _.find(customers, 'active');
      * // => object for 'barney'
      */
     var find = createFind(findIndex);
@@ -26811,13 +26811,13 @@ return jQuery;
      * _.map({ 'a': 4, 'b': 8 }, square);
      * // => [16, 64] (iteration order is not guaranteed)
      *
-     * var users = [
-     *   { 'user': 'barney' },
-     *   { 'user': 'fred' }
+     * var customers = [
+     *   { 'customers': 'barney' },
+     *   { 'customers': 'fred' }
      * ];
      *
      * // The `_.property` iteratee shorthand.
-     * _.map(users, 'user');
+     * _.map(customers, 'customers');
      * // => ['barney', 'fred']
      */
     function map(collection, iteratee) {
@@ -26843,15 +26843,15 @@ return jQuery;
      * @returns {Array} Returns the new sorted array.
      * @example
      *
-     * var users = [
-     *   { 'user': 'fred',   'age': 48 },
-     *   { 'user': 'barney', 'age': 34 },
-     *   { 'user': 'fred',   'age': 40 },
-     *   { 'user': 'barney', 'age': 36 }
+     * var customers = [
+     *   { 'customers': 'fred',   'age': 48 },
+     *   { 'customers': 'barney', 'age': 34 },
+     *   { 'customers': 'fred',   'age': 40 },
+     *   { 'customers': 'barney', 'age': 36 }
      * ];
      *
-     * // Sort by `user` in ascending order and by `age` in descending order.
-     * _.orderBy(users, ['user', 'age'], ['asc', 'desc']);
+     * // Sort by `customers` in ascending order and by `age` in descending order.
+     * _.orderBy(customers, ['customers', 'age'], ['asc', 'desc']);
      * // => objects for [['barney', 36], ['barney', 34], ['fred', 48], ['fred', 40]]
      */
     function orderBy(collection, iteratees, orders, guard) {
@@ -26883,25 +26883,25 @@ return jQuery;
      * @returns {Array} Returns the array of grouped elements.
      * @example
      *
-     * var users = [
-     *   { 'user': 'barney',  'age': 36, 'active': false },
-     *   { 'user': 'fred',    'age': 40, 'active': true },
-     *   { 'user': 'pebbles', 'age': 1,  'active': false }
+     * var customers = [
+     *   { 'customers': 'barney',  'age': 36, 'active': false },
+     *   { 'customers': 'fred',    'age': 40, 'active': true },
+     *   { 'customers': 'pebbles', 'age': 1,  'active': false }
      * ];
      *
-     * _.partition(users, function(o) { return o.active; });
+     * _.partition(customers, function(o) { return o.active; });
      * // => objects for [['fred'], ['barney', 'pebbles']]
      *
      * // The `_.matches` iteratee shorthand.
-     * _.partition(users, { 'age': 1, 'active': false });
+     * _.partition(customers, { 'age': 1, 'active': false });
      * // => objects for [['pebbles'], ['barney', 'fred']]
      *
      * // The `_.matchesProperty` iteratee shorthand.
-     * _.partition(users, ['active', false]);
+     * _.partition(customers, ['active', false]);
      * // => objects for [['barney', 'pebbles'], ['fred']]
      *
      * // The `_.property` iteratee shorthand.
-     * _.partition(users, 'active');
+     * _.partition(customers, 'active');
      * // => objects for [['fred'], ['barney', 'pebbles']]
      */
     var partition = createAggregator(function(result, value, key) {
@@ -26995,24 +26995,24 @@ return jQuery;
      * @see _.filter
      * @example
      *
-     * var users = [
-     *   { 'user': 'barney', 'age': 36, 'active': false },
-     *   { 'user': 'fred',   'age': 40, 'active': true }
+     * var customers = [
+     *   { 'customers': 'barney', 'age': 36, 'active': false },
+     *   { 'customers': 'fred',   'age': 40, 'active': true }
      * ];
      *
-     * _.reject(users, function(o) { return !o.active; });
+     * _.reject(customers, function(o) { return !o.active; });
      * // => objects for ['fred']
      *
      * // The `_.matches` iteratee shorthand.
-     * _.reject(users, { 'age': 40, 'active': true });
+     * _.reject(customers, { 'age': 40, 'active': true });
      * // => objects for ['barney']
      *
      * // The `_.matchesProperty` iteratee shorthand.
-     * _.reject(users, ['active', false]);
+     * _.reject(customers, ['active', false]);
      * // => objects for ['fred']
      *
      * // The `_.property` iteratee shorthand.
-     * _.reject(users, 'active');
+     * _.reject(customers, 'active');
      * // => objects for ['barney']
      */
     function reject(collection, predicate) {
@@ -27143,21 +27143,21 @@ return jQuery;
      * _.some([null, 0, 'yes', false], Boolean);
      * // => true
      *
-     * var users = [
-     *   { 'user': 'barney', 'active': true },
-     *   { 'user': 'fred',   'active': false }
+     * var customers = [
+     *   { 'customers': 'barney', 'active': true },
+     *   { 'customers': 'fred',   'active': false }
      * ];
      *
      * // The `_.matches` iteratee shorthand.
-     * _.some(users, { 'user': 'barney', 'active': false });
+     * _.some(customers, { 'customers': 'barney', 'active': false });
      * // => false
      *
      * // The `_.matchesProperty` iteratee shorthand.
-     * _.some(users, ['active', false]);
+     * _.some(customers, ['active', false]);
      * // => true
      *
      * // The `_.property` iteratee shorthand.
-     * _.some(users, 'active');
+     * _.some(customers, 'active');
      * // => true
      */
     function some(collection, predicate, guard) {
@@ -27184,17 +27184,17 @@ return jQuery;
      * @returns {Array} Returns the new sorted array.
      * @example
      *
-     * var users = [
-     *   { 'user': 'fred',   'age': 48 },
-     *   { 'user': 'barney', 'age': 36 },
-     *   { 'user': 'fred',   'age': 30 },
-     *   { 'user': 'barney', 'age': 34 }
+     * var customers = [
+     *   { 'customers': 'fred',   'age': 48 },
+     *   { 'customers': 'barney', 'age': 36 },
+     *   { 'customers': 'fred',   'age': 30 },
+     *   { 'customers': 'barney', 'age': 34 }
      * ];
      *
-     * _.sortBy(users, [function(o) { return o.user; }]);
+     * _.sortBy(customers, [function(o) { return o.customers; }]);
      * // => objects for [['barney', 36], ['barney', 34], ['fred', 48], ['fred', 30]]
      *
-     * _.sortBy(users, ['user', 'age']);
+     * _.sortBy(customers, ['customers', 'age']);
      * // => objects for [['barney', 34], ['barney', 36], ['fred', 30], ['fred', 48]]
      */
     var sortBy = baseRest(function(collection, iteratees) {
@@ -27348,10 +27348,10 @@ return jQuery;
      * @example
      *
      * function greet(greeting, punctuation) {
-     *   return greeting + ' ' + this.user + punctuation;
+     *   return greeting + ' ' + this.customers + punctuation;
      * }
      *
-     * var object = { 'user': 'fred' };
+     * var object = { 'customers': 'fred' };
      *
      * var bound = _.bind(greet, object, 'hi');
      * bound('!');
@@ -27394,9 +27394,9 @@ return jQuery;
      * @example
      *
      * var object = {
-     *   'user': 'fred',
+     *   'customers': 'fred',
      *   'greet': function(greeting, punctuation) {
-     *     return greeting + ' ' + this.user + punctuation;
+     *     return greeting + ' ' + this.customers + punctuation;
      *   }
      * };
      *
@@ -27405,7 +27405,7 @@ return jQuery;
      * // => 'hi fred!'
      *
      * object.greet = function(greeting, punctuation) {
-     *   return greeting + 'ya ' + this.user + punctuation;
+     *   return greeting + 'ya ' + this.customers + punctuation;
      * };
      *
      * bound('!');
@@ -30123,25 +30123,25 @@ return jQuery;
      *  else `undefined`.
      * @example
      *
-     * var users = {
+     * var customers = {
      *   'barney':  { 'age': 36, 'active': true },
      *   'fred':    { 'age': 40, 'active': false },
      *   'pebbles': { 'age': 1,  'active': true }
      * };
      *
-     * _.findKey(users, function(o) { return o.age < 40; });
+     * _.findKey(customers, function(o) { return o.age < 40; });
      * // => 'barney' (iteration order is not guaranteed)
      *
      * // The `_.matches` iteratee shorthand.
-     * _.findKey(users, { 'age': 1, 'active': true });
+     * _.findKey(customers, { 'age': 1, 'active': true });
      * // => 'pebbles'
      *
      * // The `_.matchesProperty` iteratee shorthand.
-     * _.findKey(users, ['active', false]);
+     * _.findKey(customers, ['active', false]);
      * // => 'fred'
      *
      * // The `_.property` iteratee shorthand.
-     * _.findKey(users, 'active');
+     * _.findKey(customers, 'active');
      * // => 'barney'
      */
     function findKey(object, predicate) {
@@ -30162,25 +30162,25 @@ return jQuery;
      *  else `undefined`.
      * @example
      *
-     * var users = {
+     * var customers = {
      *   'barney':  { 'age': 36, 'active': true },
      *   'fred':    { 'age': 40, 'active': false },
      *   'pebbles': { 'age': 1,  'active': true }
      * };
      *
-     * _.findLastKey(users, function(o) { return o.age < 40; });
+     * _.findLastKey(customers, function(o) { return o.age < 40; });
      * // => returns 'pebbles' assuming `_.findKey` returns 'barney'
      *
      * // The `_.matches` iteratee shorthand.
-     * _.findLastKey(users, { 'age': 36, 'active': true });
+     * _.findLastKey(customers, { 'age': 36, 'active': true });
      * // => 'barney'
      *
      * // The `_.matchesProperty` iteratee shorthand.
-     * _.findLastKey(users, ['active', false]);
+     * _.findLastKey(customers, ['active', false]);
      * // => 'fred'
      *
      * // The `_.property` iteratee shorthand.
-     * _.findLastKey(users, 'active');
+     * _.findLastKey(customers, 'active');
      * // => 'pebbles'
      */
     function findLastKey(object, predicate) {
@@ -30652,16 +30652,16 @@ return jQuery;
      * @see _.mapKeys
      * @example
      *
-     * var users = {
-     *   'fred':    { 'user': 'fred',    'age': 40 },
-     *   'pebbles': { 'user': 'pebbles', 'age': 1 }
+     * var customers = {
+     *   'fred':    { 'customers': 'fred',    'age': 40 },
+     *   'pebbles': { 'customers': 'pebbles', 'age': 1 }
      * };
      *
-     * _.mapValues(users, function(o) { return o.age; });
+     * _.mapValues(customers, function(o) { return o.age; });
      * // => { 'fred': 40, 'pebbles': 1 } (iteration order is not guaranteed)
      *
      * // The `_.property` iteratee shorthand.
-     * _.mapValues(users, 'age');
+     * _.mapValues(customers, 'age');
      * // => { 'fred': 40, 'pebbles': 1 } (iteration order is not guaranteed)
      */
     function mapValues(object, iteratee) {
@@ -31974,8 +31974,8 @@ return jQuery;
      * @example
      *
      * // Use the "interpolate" delimiter to create a compiled template.
-     * var compiled = _.template('hello <%= user %>!');
-     * compiled({ 'user': 'fred' });
+     * var compiled = _.template('hello <%= customers %>!');
+     * compiled({ 'customers': 'fred' });
      * // => 'hello fred!'
      *
      * // Use the HTML "escape" delimiter to escape data property values.
@@ -31984,19 +31984,19 @@ return jQuery;
      * // => '<b>&lt;script&gt;</b>'
      *
      * // Use the "evaluate" delimiter to execute JavaScript and generate HTML.
-     * var compiled = _.template('<% _.forEach(users, function(user) { %><li><%- user %></li><% }); %>');
-     * compiled({ 'users': ['fred', 'barney'] });
+     * var compiled = _.template('<% _.forEach(customers, function(customers) { %><li><%- customers %></li><% }); %>');
+     * compiled({ 'customers': ['fred', 'barney'] });
      * // => '<li>fred</li><li>barney</li>'
      *
      * // Use the internal `print` function in "evaluate" delimiters.
-     * var compiled = _.template('<% print("hello " + user); %>!');
-     * compiled({ 'user': 'barney' });
+     * var compiled = _.template('<% print("hello " + customers); %>!');
+     * compiled({ 'customers': 'barney' });
      * // => 'hello barney!'
      *
      * // Use the ES template literal delimiter as an "interpolate" delimiter.
      * // Disable support by replacing the "interpolate" delimiter.
-     * var compiled = _.template('hello ${ user }!');
-     * compiled({ 'user': 'pebbles' });
+     * var compiled = _.template('hello ${ customers }!');
+     * compiled({ 'customers': 'pebbles' });
      * // => 'hello pebbles!'
      *
      * // Use backslashes to treat delimiters as plain text.
@@ -32005,29 +32005,29 @@ return jQuery;
      * // => '<%- value %>'
      *
      * // Use the `imports` option to import `jQuery` as `jq`.
-     * var text = '<% jq.each(users, function(user) { %><li><%- user %></li><% }); %>';
+     * var text = '<% jq.each(customers, function(customers) { %><li><%- customers %></li><% }); %>';
      * var compiled = _.template(text, { 'imports': { 'jq': jQuery } });
-     * compiled({ 'users': ['fred', 'barney'] });
+     * compiled({ 'customers': ['fred', 'barney'] });
      * // => '<li>fred</li><li>barney</li>'
      *
      * // Use the `sourceURL` option to specify a custom sourceURL for the template.
-     * var compiled = _.template('hello <%= user %>!', { 'sourceURL': '/basic/greeting.jst' });
+     * var compiled = _.template('hello <%= customers %>!', { 'sourceURL': '/basic/greeting.jst' });
      * compiled(data);
      * // => Find the source of "greeting.jst" under the Sources tab or Resources panel of the web inspector.
      *
      * // Use the `variable` option to ensure a with-statement isn't used in the compiled template.
-     * var compiled = _.template('hi <%= data.user %>!', { 'variable': 'data' });
+     * var compiled = _.template('hi <%= data.customers %>!', { 'variable': 'data' });
      * compiled.source;
      * // => function(data) {
      * //   var __t, __p = '';
-     * //   __p += 'hi ' + ((__t = ( data.user )) == null ? '' : __t) + '!';
+     * //   __p += 'hi ' + ((__t = ( data.customers )) == null ? '' : __t) + '!';
      * //   return __p;
      * // }
      *
      * // Use custom template delimiters.
      * _.templateSettings.interpolate = /{{([\s\S]+?)}}/g;
-     * var compiled = _.template('hello {{ user }}!');
-     * compiled({ 'user': 'mustache' });
+     * var compiled = _.template('hello {{ customers }}!');
+     * compiled({ 'customers': 'mustache' });
      * // => 'hello mustache!'
      *
      * // Use the `source` property to inline compiled templates for meaningful
@@ -32770,21 +32770,21 @@ return jQuery;
      * @returns {Function} Returns the callback.
      * @example
      *
-     * var users = [
-     *   { 'user': 'barney', 'age': 36, 'active': true },
-     *   { 'user': 'fred',   'age': 40, 'active': false }
+     * var customers = [
+     *   { 'customers': 'barney', 'age': 36, 'active': true },
+     *   { 'customers': 'fred',   'age': 40, 'active': false }
      * ];
      *
      * // The `_.matches` iteratee shorthand.
-     * _.filter(users, _.iteratee({ 'user': 'barney', 'active': true }));
-     * // => [{ 'user': 'barney', 'age': 36, 'active': true }]
+     * _.filter(customers, _.iteratee({ 'customers': 'barney', 'active': true }));
+     * // => [{ 'customers': 'barney', 'age': 36, 'active': true }]
      *
      * // The `_.matchesProperty` iteratee shorthand.
-     * _.filter(users, _.iteratee(['user', 'fred']));
-     * // => [{ 'user': 'fred', 'age': 40 }]
+     * _.filter(customers, _.iteratee(['customers', 'fred']));
+     * // => [{ 'customers': 'fred', 'age': 40 }]
      *
      * // The `_.property` iteratee shorthand.
-     * _.map(users, _.iteratee('user'));
+     * _.map(customers, _.iteratee('customers'));
      * // => ['barney', 'fred']
      *
      * // Create custom iteratee shorthands.
@@ -35426,7 +35426,7 @@ function destroy() {
 
   this.disableEventListeners();
 
-  // remove the popper if user explicitly asked for the deletion on destroy
+  // remove the popper if customers explicitly asked for the deletion on destroy
   // do not use `remove` because IE11 doesn't support it
   if (this.options.removeOnDestroy) {
     this.popper.parentNode.removeChild(this.popper);
@@ -37560,7 +37560,7 @@ __webpack_require__.r(__webpack_exports__);
 
 // IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
 // This module is a runtime utility for cleaner component module output and will
-// be included in the final webpack user bundle.
+// be included in the final webpack customers bundle.
 
 function normalizeComponent (
   scriptExports,
@@ -38087,7 +38087,7 @@ var config = ({
   ignoredElements: [],
 
   /**
-   * Custom user key aliases for v-on
+   * Custom customers key aliases for v-on
    */
   // $flow-disable-line
   keyCodes: Object.create(null),
@@ -39542,7 +39542,7 @@ function globalHandleError (err, vm, info) {
     try {
       return config.errorHandler.call(null, err, vm, info)
     } catch (e) {
-      // if the user intentionally throws the original error in the handler,
+      // if the customers intentionally throws the original error in the handler,
       // do not log it twice
       if (e !== err) {
         logError(e, null, 'config.errorHandler');
@@ -40022,7 +40022,7 @@ function simpleNormalizeChildren (children) {
 }
 
 // 2. When the children contains constructs that always generated nested Arrays,
-// e.g. <template>, <slot>, v-for, or when the children is provided by user
+// e.g. <template>, <slot>, v-for, or when the children is provided by customers
 // with hand-written render functions / JSX. In such cases a full normalization
 // is needed to cater to all possible types of children values.
 function normalizeChildren (children) {
@@ -40269,7 +40269,7 @@ function normalizeScopedSlot(normalSlots, key, fn) {
       : res
   };
   // this is a slot using the new v-slot syntax without scope. although it is
-  // compiled as a scoped slot, render fn users would expect it to be present
+  // compiled as a scoped slot, render fn customers would expect it to be present
   // on this.$slots because the usage is semantically a normal slot.
   if (fn.proxy) {
     Object.defineProperty(normalSlots, key, {
@@ -41160,7 +41160,7 @@ function initRender (vm) {
   // internal version is used by render functions compiled from templates
   vm._c = function (a, b, c, d) { return createElement(vm, a, b, c, d, false); };
   // normalization is always applied for the public version, used in
-  // user-written render functions.
+  // customers-written render functions.
   vm.$createElement = function (a, b, c, d) { return createElement(vm, a, b, c, d, true); };
 
   // $attrs & $listeners are exposed for easier HOC creation.
@@ -41957,8 +41957,8 @@ function flushSchedulerQueue () {
   // This ensures that:
   // 1. Components are updated from parent to child. (because parent is always
   //    created before the child)
-  // 2. A component's user watchers are run before its render watcher (because
-  //    user watchers are created before the render watcher)
+  // 2. A component's customers watchers are run before its render watcher (because
+  //    customers watchers are created before the render watcher)
   // 3. If a component is destroyed during a parent component's watcher run,
   //    its watchers can be skipped.
   queue.sort(function (a, b) { return a.id - b.id; });
@@ -44360,7 +44360,7 @@ function updateAttrs (oldVnode, vnode) {
   var elm = vnode.elm;
   var oldAttrs = oldVnode.data.attrs || {};
   var attrs = vnode.data.attrs || {};
-  // clone observed objects, as the user probably wants to mutate it
+  // clone observed objects, as the customers probably wants to mutate it
   if (isDef(attrs.__ob__)) {
     attrs = vnode.data.attrs = extend({}, attrs);
   }
@@ -45141,7 +45141,7 @@ function genDefaultModel (
 // normalize v-model event tokens that can only be determined at runtime.
 // it's important to place the event as the first in the array because
 // the whole point is ensuring the v-model callback gets called before
-// user-attached handlers.
+// customers-attached handlers.
 function normalizeEvents (on) {
   /* istanbul ignore if */
   if (isDef(on[RANGE_TOKEN])) {
@@ -45263,7 +45263,7 @@ function updateDOMProps (oldVnode, vnode) {
   var elm = vnode.elm;
   var oldProps = oldVnode.data.domProps || {};
   var props = vnode.data.domProps || {};
-  // clone observed objects, as the user probably wants to mutate it
+  // clone observed objects, as the customers probably wants to mutate it
   if (isDef(props.__ob__)) {
     props = vnode.data.domProps = extend({}, props);
   }
@@ -45499,7 +45499,7 @@ function updateStyle (oldVnode, vnode) {
   var style = normalizeStyleBinding(vnode.data.style) || {};
 
   // store normalized style under a different key for next diff
-  // make sure to clone it if it's reactive, since the user likely wants
+  // make sure to clone it if it's reactive, since the customers likely wants
   // to mutate it.
   vnode.data.normalizedStyle = isDef(style.__ob__)
     ? extend({}, style)
@@ -49818,7 +49818,7 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
   null,
   null,
   null
-  
+
 )
 
 /* hot reload */
@@ -49838,7 +49838,7 @@ component.options.__file = "resources/js/components/ExampleComponent.vue"
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ExampleComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 /***/ }),
 

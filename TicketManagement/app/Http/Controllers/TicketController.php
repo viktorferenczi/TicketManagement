@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Customer;
 use App\Ticket;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
 
@@ -15,6 +16,7 @@ class TicketController extends Controller
    }
 
    public function create(Request $request){
+       //validate the incoming data
        $data = request()->validate([
            'name' => 'required|min:3|string',
            'email' => 'required|min:3|email',
@@ -22,23 +24,37 @@ class TicketController extends Controller
            'description' =>'required|min:3|max:150',
        ]);
 
-      // $date = Carbon::createFromFormat('Y.m.d', date('Y-m-d'));
-      // $date = $date->addDays(1);
+       //case: customer registered already
+       try {
+           // find the user if he/she is already registered
+           $customer = Customer::where(['email', '=', $data['email'],'name', '=', $data['name']])->firstOrFail();
 
-       $customer = new Customer();
-       $ticket = new Ticket();
-        //need to find the email if exists
-       $customer->name = $data['name'];
-       $customer->email = $data['email'];
-       $customer->save();
+           $ticket = new Ticket(); //create a new ticket for the customer in the DB
+           $ticket->title = $data['title'];
+           $ticket->description = $data['description'];
+           $ticket->due_date = date('Y-m-d'); // due date logic
+           $ticket->user_id = $customer->id;
+           $ticket->save(); // save the ticket for the already registered customer
 
-       $customerID = Customer::max('id');
+           //case: customer not registered yet
+       } catch  (ModelNotFoundException $e){
 
-       $ticket->title = $data['title'];
-       $ticket->description = $data['description'];
-       $ticket->due_date = date('Y-m-d'); // due date logic
-       $ticket->user_id = $customerID;
-       $ticket->save();
+           $customer = new Customer(); //create a new customer for the DB
+           $ticket = new Ticket(); // create ticket for the customer for the DB
+           $customer->name = $data['name'];
+           $customer->email = $data['email'];
+           $customer->save(); //save the customer in the DB
+
+           $customerID = Customer::max('id'); //search the latest registered customer. Because of DB id incrementation,
+                                             // our customer will be the one who has the highest id.
+
+           $ticket->title = $data['title'];
+           $ticket->description = $data['description'];
+           $ticket->due_date = date('Y-m-d'); // due date logic
+           $ticket->user_id = $customerID;
+           $ticket->save(); // save the ticket related to the newly registered customer.
+
+       }
 
        return redirect()->back()->with('message','Successful ticket submission!');
 

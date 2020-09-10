@@ -6,7 +6,7 @@
     <p class="text-black-50">Please select one of the following options:</p>
     <ul>
         <li style="list-style-type: none">
-            <a href="">View Customers</a>
+            <a href="{{ route('customers.customerList') }}">View Customers</a>
         </li>
         <li style="list-style-type: none">
             <a href="">View Tickets</a>
