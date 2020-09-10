@@ -28,7 +28,9 @@ class TicketSubmissionController extends Controller
        //case: customer registered already
        try {
            // find the user if he/she is already registered with checking email and name combo
-           $customer = Customer::where(['email', '=', $data['email'],'name', '=', $data['name']])->firstOrFail();
+           $customer = Customer::where('email', '=', $data['email'])
+                                ->where('name', '=', $data['name'])
+                                ->firstOrFail();
 
            $ticket = new Ticket(); //create a new ticketSubmission for the customer in the DB
            $ticket->title = $data['title'];
@@ -57,7 +59,7 @@ class TicketSubmissionController extends Controller
 
        }
 
-       return redirect()->back()->with('message','Successful ticketSubmission submission!');
+       return redirect()->back()->with('message','Successful ticket submission!');
 
 
 
