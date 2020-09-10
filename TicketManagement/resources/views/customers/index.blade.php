@@ -17,5 +17,8 @@
                </div>
            </div>
         @endforeach
+        <div class="d-flex justify-content-center align-items-center">
+            {{ $customers->links() }}
+        </div>
     </div>
 @endsection

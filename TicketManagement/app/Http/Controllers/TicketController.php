@@ -9,7 +9,7 @@ class TicketController extends Controller
 {
     public function index(){
 
-        $tickets = Ticket::all();
+        $tickets = Ticket::paginate(5);
 
         return view('ticket.ticketList.index', compact('tickets'));
     }

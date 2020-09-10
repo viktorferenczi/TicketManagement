@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container pt-5">
+    <div class="container">
         <h4>Tickets:</h4>
         <hr>
         @foreach($tickets as $ticket)
@@ -17,5 +17,8 @@
                 </div>
             </div>
         @endforeach
+        <div class="d-flex justify-content-center align-items-center">
+            {{ $tickets->links() }}
+        </div>
     </div>
 @endsection

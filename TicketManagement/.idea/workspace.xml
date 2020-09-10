@@ -21,8 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="418ecc61-0ff8-4cac-9ed0-22335ac81cb9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TicketController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TicketController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/customers/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/customers/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/ticket/ticketList/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/ticket/ticketList/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../stubs/filter/filter.php" beforeDir="false" afterPath="$PROJECT_DIR$/../../stubs/filter/filter.php" afterDir="false" />
     </list>
@@ -200,7 +201,7 @@
       <workItem from="1599556200964" duration="4744000" />
       <workItem from="1599564813484" duration="928000" />
       <workItem from="1599566171197" duration="26410000" />
-      <workItem from="1599735361020" duration="9367000" />
+      <workItem from="1599735361020" duration="9975000" />
     </task>
     <servers />
   </component>

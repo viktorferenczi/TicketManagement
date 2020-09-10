@@ -15,7 +15,7 @@ class CustomerController extends Controller
             ->select('customers.name','customers.email'
                     /*DB::raw('COUNT(CASE WHEN customers.id = tickets.user_id then 1 end) as ticketCount')*/)
             ->distinct() // make sure we return a single person once
-            ->get();
+            ->paginate(5);
 
         return view('customers.index', compact('customers'));
     }
