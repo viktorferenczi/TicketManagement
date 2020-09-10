@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 class TicketController extends Controller
 {
    public function index(){
-       return view('ticket.index');
+       return view('ticketSubmission.index');
    }
 
    public function create(Request $request){
@@ -26,21 +26,21 @@ class TicketController extends Controller
 
        //case: customer registered already
        try {
-           // find the user if he/she is already registered
+           // find the user if he/she is already registered with checking email and name combo
            $customer = Customer::where(['email', '=', $data['email'],'name', '=', $data['name']])->firstOrFail();
 
-           $ticket = new Ticket(); //create a new ticket for the customer in the DB
+           $ticket = new Ticket(); //create a new ticketSubmission for the customer in the DB
            $ticket->title = $data['title'];
            $ticket->description = $data['description'];
            $ticket->due_date = date('Y-m-d'); // due date logic
            $ticket->user_id = $customer->id;
-           $ticket->save(); // save the ticket for the already registered customer
+           $ticket->save(); // save the ticketSubmission for the already registered customer
 
            //case: customer not registered yet
        } catch  (ModelNotFoundException $e){
 
            $customer = new Customer(); //create a new customer for the DB
-           $ticket = new Ticket(); // create ticket for the customer for the DB
+           $ticket = new Ticket(); // create ticketSubmission for the customer for the DB
            $customer->name = $data['name'];
            $customer->email = $data['email'];
            $customer->save(); //save the customer in the DB
@@ -52,11 +52,11 @@ class TicketController extends Controller
            $ticket->description = $data['description'];
            $ticket->due_date = date('Y-m-d'); // due date logic
            $ticket->user_id = $customerID;
-           $ticket->save(); // save the ticket related to the newly registered customer.
+           $ticket->save(); // save the ticketSubmission related to the newly registered customer.
 
        }
 
-       return redirect()->back()->with('message','Successful ticket submission!');
+       return redirect()->back()->with('message','Successful ticketSubmission submission!');
 
 
 

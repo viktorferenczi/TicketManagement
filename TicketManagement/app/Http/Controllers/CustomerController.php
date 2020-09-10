@@ -8,15 +8,15 @@ use Illuminate\Support\Facades\DB;
 
 class CustomerController extends Controller
 {
-    public function customerList(){
+    public function index(){
 
         $customers = DB::table('customers')
-            ->join('tickets','customers.id' , '=', 'tickets.user_id')
+            ->join('ticketSubmission','customers.id' , '=', 'ticketSubmission.user_id')
             ->select('customers.name','customers.email'
-                    /*DB::raw('COUNT(CASE WHEN customers.id = tickets.user_id then 1 end) as ticketCount')*/)
-            ->distinct()
+                    /*DB::raw('COUNT(CASE WHEN customers.id = ticketSubmission.user_id then 1 end) as ticketCount')*/)
+            ->distinct() // make sure we return a single person once
             ->get();
 
-        return view('customers.customerList', compact('customers'));
+        return view('customers.index', compact('customers'));
     }
 }

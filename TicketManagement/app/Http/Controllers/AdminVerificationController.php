@@ -7,11 +7,11 @@ use Illuminate\Http\Request;
 class AdminVerificationController extends Controller
 {
 
-    public function adminVerification(){
+    public function index(){
         return view("adminVerification.index");
     }
 
-    public function verification(Request $request){
+    public function create(Request $request){
         $data = request()->validate([
             'accessCode' => 'required'
         ]);

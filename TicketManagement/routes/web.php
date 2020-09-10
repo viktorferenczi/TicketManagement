@@ -18,25 +18,29 @@ Route::get('/', function () {
 });
 
 /*
- * Ticket
+ * Ticket(s)
  */
-Route::get('/ticket','TicketController@index')->name('ticket.index');
-Route::post('/ticket/create','TicketController@create')->name('ticket.index');
+Route::get('/ticket','TicketController@index')->name('ticketSubmission.index');
+Route::post('/ticket/create','TicketController@create')->name('ticketSubmission.index');
+
+Route::get('/tickets','TicketController@list')->name('ticket.ticketList.index');
+
+
 
 
 /*
  * Admin verification
  */
-Route::get('/adminpanel','AdminVerificationController@adminVerification')->name('adminVerification.index');
-Route::post('/adminpanel/verification','AdminVerificationController@verification')->name('adminVerification.verification');
+Route::get('/adminpanel','AdminVerificationController@index')->name('adminVerification.index');
+Route::post('/adminpanel/verification','AdminVerificationController@create');
 
 /*
  * Admin access
  */
 Route::get('/adminpanel/index', 'AdminController@index')->name('admin.index');
 
-Route::get('/customers','CustomerController@customerList')->name('customers.customerList');
-//Route::get('/{customer}/tickets');
+Route::get('/customers','CustomerController@index')->name('customers.index');
+//Route::get('/{customer}/ticketSubmission','')->name('customerTickets.index');
 
-//Route::get('/tickets');
+//Route::get('/ticketSubmission');
 
