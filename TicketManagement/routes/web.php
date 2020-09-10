@@ -21,7 +21,7 @@ Route::get('/', function () {
  * Ticket submission
  */
 Route::get('/ticket','TicketSubmissionController@index')->name('ticket.ticketSubmission.index');
-Route::post('/ticket/create','TicketSubmissionController@create')->name('ticket.ticketSubmission.index');
+Route::post('/ticket/create','TicketSubmissionController@create');
 
 
 /*

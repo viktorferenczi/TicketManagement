@@ -72,10 +72,10 @@
                 <div class="top-right links">
                     @auth
                         <p>Admin logged in as: {{Auth::user()->name}}</p>
-                        <a href="/adminpanel/index">Admin Panel</a>
+                        <a href="{{ route('admin.index') }}">Admin Panel</a>
                     @else
-                        <a href="/ticket">Submit Ticket</a>
-                        <a href="/adminpanel/index">Admin</a>
+                        <a href="{{ route('ticket.ticketSubmission.index') }}">Submit Ticket</a>
+                        <a href="{{ route('admin.index') }}">Admin</a>
                     @endauth
                 </div>
             @endif

@@ -11,9 +11,9 @@ class CustomerController extends Controller
     public function index(){
 
         $customers = DB::table('customers')
-            ->join('ticketSubmission','customers.id' , '=', 'ticketSubmission.user_id')
+            ->join('tickets','customers.id' , '=', 'tickets.user_id')
             ->select('customers.name','customers.email'
-                    /*DB::raw('COUNT(CASE WHEN customers.id = ticketSubmission.user_id then 1 end) as ticketCount')*/)
+                    /*DB::raw('COUNT(CASE WHEN customers.id = tickets.user_id then 1 end) as ticketCount')*/)
             ->distinct() // make sure we return a single person once
             ->get();
 
