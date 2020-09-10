@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Ticket Manager</title>
 
         <!-- Scripts -->
         <script type="text/javascript" src="{{ asset('js/adminVerification.js') }}"></script>
@@ -73,7 +73,7 @@
                     @auth
                         <a href="/adminpanel/index">Admin Panel</a>
                     @else
-                        <a href="/ticket/create">Submit Ticket</a>
+                        <a href="/ticket">Submit Ticket</a>
                         <a href="/adminpanel/index">Admin</a>
                     @endauth
                 </div>

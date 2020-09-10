@@ -67,6 +67,7 @@
                                     {{ __('Register') }}
                                 </button>
                             </div>
+                            <a class="btn btn-link" href="{{ route('login') }}">Login as admin</a>
                         </div>
                     </form>
                 </div>

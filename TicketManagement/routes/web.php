@@ -18,6 +18,13 @@ Route::get('/', function () {
 });
 
 /*
+ * Ticket
+ */
+Route::get('/ticket','TicketController@index')->name('ticket.index');
+Route::post('/ticket/create','TicketController@create')->name('ticket.index');
+
+
+/*
  * Admin verification
  */
 Route::get('/adminpanel','AdminVerificationController@adminVerification')->name('adminVerification.index');

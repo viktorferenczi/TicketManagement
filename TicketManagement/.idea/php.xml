@@ -107,7 +107,7 @@
       <path value="$PROJECT_DIR$/../../stubs" />
     </include_path>
   </component>
-  <component name="PhpProjectSharedConfiguration" php_language_level="7.4" />
+  <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />
   <component name="PhpRuntimeConfiguration" default_stubs_path="$PROJECT_DIR$/../../stubs">
     <extensions>
       <extension name="FFI" enabled="true" />
