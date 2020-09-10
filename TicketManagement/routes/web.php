@@ -8,43 +8,38 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-Auth::routes();
+Auth::routes(); //mentor access
+
+Route::get('/', function () {
+    return view('welcome'); //customer access
+});
 
 /*
  * Customer
  */
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/customers','CustomerController@index')->name('customers.index'); //mentor access
 
 /*
  * Ticket submission
  */
-Route::get('/ticket','TicketSubmissionController@index')->name('ticket.ticketSubmission.index');
+Route::get('/ticket','TicketSubmissionController@index')->name('ticket.ticketSubmission.index'); //customer access
 Route::post('/ticket/create','TicketSubmissionController@create');
 
 
 /*
- * Ticket(s)
+ * Tickets(s)
  */
-Route::get('/tickets','TicketController@index')->name('ticket.ticketList.index');
-
-
+Route::get('/tickets','TicketController@index')->name('ticket.ticketList.index'); //mentor access
+Route::get('/{customer}/tickets','TicketController@show')->name('ticket.customerTickets.index'); //mentor access
 
 
 /*
  * Admin verification
  */
-Route::get('/adminpanel','AdminVerificationController@index')->name('admin.adminVerification.index');
+Route::get('/adminpanel','AdminVerificationController@index')->name('admin.adminVerification.index'); //customer-mentor access
 Route::post('/adminpanel/verification','AdminVerificationController@create');
 
 /*
- * Admin access
+ * Admin panel
  */
-Route::get('/adminpanel/index', 'AdminController@index')->name('admin.index');
-
-Route::get('/customers','CustomerController@index')->name('customers.index');
-//Route::get('/{customer}/ticketSubmission','')->name('customerTickets.index');
-
-//Route::get('/ticketSubmission');
-
+Route::get('/adminpanel/index', 'AdminController@index')->name('admin.index'); //mentor access

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container pt-5">
+    <div class="container">
         <h4>Customers:</h4>
         <hr>
        @foreach($customers as $customer)
@@ -11,6 +11,7 @@
                </div>
                <div class="card-body">
                   <strong>Customer email address:</strong> {{$customer->email}}
+                   <a class="btn btn-primary btn-dark float-right" href="/{{$customer->id}}/tickets">View Tickets</a>
                </div>
                <div class="card-footer">
                    <strong>Customer has:</strong> {$customer->ticketCount tickets submitted.
