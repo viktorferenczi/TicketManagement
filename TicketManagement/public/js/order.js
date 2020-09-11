@@ -35,7 +35,6 @@ $(document).ready(function() {
                         "</div>"+
                         "</div>")
                 });
-                console.log(data);
             },
             error: function (data)
             {
@@ -76,7 +75,6 @@ $(document).ready(function() {
                         "</div>"+
                         "</div>")
                 });
-                console.log(data);
             },
             error: function (data)
             {
@@ -108,12 +106,12 @@ $("#created_at_customer").click(function() {
         },
         success: function (data)
         {
-            $("#taxList").empty();
+            $("#customerTaxList").empty();
             data.forEach(ticket => {
                 //got yyyy-mm-ddt00:00:00.000z from backend in json
                 let date = ticket.created_at.slice(0,10);
                 let time = ticket.created_at.slice(11,19);
-                $("#taxList").append('<div class="card mb-5">' +
+                $("#customerTaxList").append('<div class="card mb-5">' +
                     '<div class="card-header">' +
                     "<strong>Ticket title:</strong> " + ticket.title +
                     "</div>" +
@@ -125,7 +123,6 @@ $("#created_at_customer").click(function() {
                     "</div>"+
                     "</div>")
             });
-            console.log(data);
         },
         error: function (data)
         {
@@ -151,12 +148,12 @@ $("#due_date_customer").click(function() {
         },
         success: function (data)
         {
-            $("#taxList").empty();
+            $("#customerTaxList").empty();
             data.forEach(ticket => {
                 //got yyyy-mm-ddt00:00:00.000z from backend in json
                 let date = ticket.created_at.slice(0,10);
                 let time = ticket.created_at.slice(11,19);
-                $("#taxList").append('<div class="card mb-5">' +
+                $("#customerTaxList").append('<div class="card mb-5">' +
                     '<div class="card-header">' +
                     "<strong>Ticket title:</strong> " + ticket.title +
                     "</div>" +
@@ -168,7 +165,6 @@ $("#due_date_customer").click(function() {
                     "</div>"+
                     "</div>")
             });
-            console.log(data);
         },
         error: function (data)
         {

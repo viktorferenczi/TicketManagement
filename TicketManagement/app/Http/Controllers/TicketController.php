@@ -28,7 +28,7 @@ class TicketController extends Controller
         return view('ticket.customerTickets.index',compact('tickets','customer'));
     }
 
-    public function ticketSort(Request $request){
+    public function ticketListSort(Request $request){
         $sortPattern = $request['order'];
         $tickets = Ticket::orderBy($sortPattern, 'DESC')->get();
 
