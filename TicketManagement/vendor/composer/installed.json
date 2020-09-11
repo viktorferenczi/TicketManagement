@@ -1707,6 +1707,51 @@
         ]
     },
     {
+        "name": "letsdrink/ouzo-goodies",
+        "version": "1.7.0",
+        "version_normalized": "1.7.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/letsdrink/ouzo-goodies.git",
+            "reference": "59963b9189a809d61b83a6d69f135acbc5fc98f3"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/letsdrink/ouzo-goodies/zipball/59963b9189a809d61b83a6d69f135acbc5fc98f3",
+            "reference": "59963b9189a809d61b83a6d69f135acbc5fc98f3",
+            "shasum": ""
+        },
+        "time": "2019-09-28T14:57:55+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Ouzo\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Ouzo developers",
+                "email": "ouzo-framework@googlegroups.com"
+            }
+        ],
+        "description": "Utility classes, test assertions and mocking framework extracted from Ouzo framework.",
+        "homepage": "http://ouzoframework.org/",
+        "keywords": [
+            "TDD",
+            "asserts",
+            "mock",
+            "php",
+            "test",
+            "utilities",
+            "utils"
+        ]
+    },
+    {
         "name": "mockery/mockery",
         "version": "1.4.2",
         "version_normalized": "1.4.2.0",

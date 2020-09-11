@@ -20,9 +20,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="418ecc61-0ff8-4cac-9ed0-22335ac81cb9" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Interfaces/DateCalculatorInterface.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Providers/DateCalculatorServiceProvider.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Services/DueDate.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/TicketManagement.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/TicketManagement.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TicketSubmissionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TicketSubmissionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/ticket/ticketSubmission/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/ticket/ticketSubmission/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../stubs/filter/filter.php" beforeDir="false" afterPath="$PROJECT_DIR$/../../stubs/filter/filter.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -149,6 +159,7 @@
       <path value="$PROJECT_DIR$/vendor/sebastian/environment" />
       <path value="$PROJECT_DIR$/vendor/laravel/ui" />
       <path value="$PROJECT_DIR$/../../stubs" />
+      <path value="$PROJECT_DIR$/vendor/letsdrink/ouzo-goodies" />
     </include_path>
   </component>
   <component name="ProjectId" id="1hDqqGpDRDbxjFUqhJPCjWUSXQn" />
@@ -163,10 +174,10 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/public/js" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -184,7 +195,7 @@
   </component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
-      <TestRunner scope="XML" />
+      <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml" scope="XML" />
       <method v="2" />
     </configuration>
   </component>
@@ -199,7 +210,7 @@
       <workItem from="1599556200964" duration="4744000" />
       <workItem from="1599564813484" duration="928000" />
       <workItem from="1599566171197" duration="26410000" />
-      <workItem from="1599735361020" duration="22548000" />
+      <workItem from="1599735361020" duration="32980000" />
     </task>
     <servers />
   </component>
@@ -226,17 +237,53 @@
       <screen x="0" y="23" width="1440" height="835" />
     </state>
     <state x="412" y="90" key="#PHP/0.23.1440.835@0.23.1440.835" timestamp="1599586825728" />
+    <state x="529" y="129" key="#com.intellij.ide.util.MemberChooser" timestamp="1599843721778">
+      <screen x="0" y="23" width="1440" height="835" />
+    </state>
+    <state x="529" y="129" key="#com.intellij.ide.util.MemberChooser/0.23.1440.835@0.23.1440.835" timestamp="1599843721778" />
     <state x="213" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1599754122126">
       <screen x="0" y="23" width="1440" height="835" />
     </state>
     <state x="213" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.23.1440.835@0.23.1440.835" timestamp="1599754122126" />
-    <state x="543" y="371" key="NewPhpFileDialog" timestamp="1599753774521">
+    <state width="1398" height="269" key="GridCell.Tab.0.bottom" timestamp="1599849328055">
       <screen x="0" y="23" width="1440" height="835" />
     </state>
-    <state x="543" y="371" key="NewPhpFileDialog/0.23.1440.835@0.23.1440.835" timestamp="1599753774521" />
-    <state x="385" y="182" width="670" height="676" key="search.everywhere.popup" timestamp="1599832323720">
+    <state width="1398" height="269" key="GridCell.Tab.0.bottom/0.23.1440.835@0.23.1440.835" timestamp="1599849328055" />
+    <state width="1398" height="269" key="GridCell.Tab.0.center" timestamp="1599849328054">
       <screen x="0" y="23" width="1440" height="835" />
     </state>
-    <state x="385" y="182" width="670" height="676" key="search.everywhere.popup/0.23.1440.835@0.23.1440.835" timestamp="1599832323720" />
+    <state width="1398" height="269" key="GridCell.Tab.0.center/0.23.1440.835@0.23.1440.835" timestamp="1599849328054" />
+    <state width="1398" height="269" key="GridCell.Tab.0.left" timestamp="1599849328054">
+      <screen x="0" y="23" width="1440" height="835" />
+    </state>
+    <state width="1398" height="269" key="GridCell.Tab.0.left/0.23.1440.835@0.23.1440.835" timestamp="1599849328054" />
+    <state width="1398" height="269" key="GridCell.Tab.0.right" timestamp="1599849328055">
+      <screen x="0" y="23" width="1440" height="835" />
+    </state>
+    <state width="1398" height="269" key="GridCell.Tab.0.right/0.23.1440.835@0.23.1440.835" timestamp="1599849328055" />
+    <state width="1398" height="269" key="GridCell.Tab.1.bottom" timestamp="1599849328057">
+      <screen x="0" y="23" width="1440" height="835" />
+    </state>
+    <state width="1398" height="269" key="GridCell.Tab.1.bottom/0.23.1440.835@0.23.1440.835" timestamp="1599849328057" />
+    <state width="1398" height="269" key="GridCell.Tab.1.center" timestamp="1599849328056">
+      <screen x="0" y="23" width="1440" height="835" />
+    </state>
+    <state width="1398" height="269" key="GridCell.Tab.1.center/0.23.1440.835@0.23.1440.835" timestamp="1599849328056" />
+    <state width="1398" height="269" key="GridCell.Tab.1.left" timestamp="1599849328056">
+      <screen x="0" y="23" width="1440" height="835" />
+    </state>
+    <state width="1398" height="269" key="GridCell.Tab.1.left/0.23.1440.835@0.23.1440.835" timestamp="1599849328056" />
+    <state width="1398" height="269" key="GridCell.Tab.1.right" timestamp="1599849328057">
+      <screen x="0" y="23" width="1440" height="835" />
+    </state>
+    <state width="1398" height="269" key="GridCell.Tab.1.right/0.23.1440.835@0.23.1440.835" timestamp="1599849328057" />
+    <state x="543" y="371" key="NewPhpFileDialog" timestamp="1599843661542">
+      <screen x="0" y="23" width="1440" height="835" />
+    </state>
+    <state x="543" y="371" key="NewPhpFileDialog/0.23.1440.835@0.23.1440.835" timestamp="1599843661542" />
+    <state x="385" y="182" width="670" height="676" key="search.everywhere.popup" timestamp="1599843214869">
+      <screen x="0" y="23" width="1440" height="835" />
+    </state>
+    <state x="385" y="182" width="670" height="676" key="search.everywhere.popup/0.23.1440.835@0.23.1440.835" timestamp="1599843214869" />
   </component>
 </project>

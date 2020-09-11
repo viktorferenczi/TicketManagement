@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Customer;
+use App\Interfaces\DateCalculatorInterface;
 use App\Ticket;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -16,7 +17,7 @@ class TicketSubmissionController extends Controller
    }
 
 
-   public function create(Request $request){
+   public function create(Request $request, DateCalculatorInterface $calculatorInstance){
        //validate the incoming data
        $data = request()->validate([
            'name' => 'required|min:3|string',
@@ -39,6 +40,7 @@ class TicketSubmissionController extends Controller
            $ticket->title = $data['title'];
            $ticket->description = $data['description'];
            $ticket->due_date = date('Y-m-d'); // due date logic
+           echo $calculatorInstance->calculate();
            $ticket->user_id = $customer->id;
            $ticket->save(); // save the ticket for the already registered customer
 
