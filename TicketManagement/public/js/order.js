@@ -15,6 +15,7 @@ $(document).ready(function() {
             {
                 $("#taxList").empty();
                 data.forEach(ticket => {
+                    //got yyyy-mm-ddt00:00:00.000z from backend in json
                     let date = ticket.created_at.slice(0,10);
                     let time = ticket.created_at.slice(11,19);
                     $("#taxList").append('<div class="card mb-5">' +
@@ -55,6 +56,7 @@ $(document).ready(function() {
             {
                 $("#taxList").empty();
                 data.forEach(ticket => {
+                    //got yyyy-mm-ddt00:00:00.000z from backend in json
                     let date = ticket.created_at.slice(0,10);
                     let time = ticket.created_at.slice(11,19);
                     $("#taxList").append('<div class="card mb-5">' +
