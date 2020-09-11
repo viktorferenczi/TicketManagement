@@ -53,18 +53,15 @@ class DueDate implements DateCalculatorInterface
 
             $date = $this->fromWeekendsToMonday($date); // check if the submit happened on the weekend
 
-            // get the year/month/day from the full date form
-            $year = substr($date->toDateTime(),0,10);
+            $year = substr($date->toDateTime(),0,10);// get the year/month/day from the full date form
 
-            //set the clock for 09:00 that day
-            $date = Clock::at($year . " " ."09:00" );
-
+            $date = Clock::at($year . " " ."09:00" ); //set the clock for 09:00 that day
 
             $date->plusHours(8); //added 8 hours for that day, we are now at 17:00 (same day) - remaining hours: 8
 
-           $date = $this->plusHoursForNextDay($date);//skip for tomorrow and add the remaining 8 hours
+            $date = $this->plusHoursForNextDay($date);//skip for tomorrow and add the remaining 8 hours
 
-           return $date->toDateTime(); //final due date if ticket arrives any day before 09:00
+            return $date->toDateTime(); //final due date if ticket arrives any day before 09:00
 
 
             //case: ticket arrives after 17:00--------------------------------------------------------------------------
@@ -77,7 +74,7 @@ class DueDate implements DateCalculatorInterface
             $year = substr($date->toDateTime(),0,10);
             $date = Clock::at($year . " " ."09:00" );
 
-
+            
             $date->plusHours(8); //added 8 hours for that day, we are now at 17:00 (same day) - remaining hours: 8
 
             $date = $this->plusHoursForNextDay($date); //skip for tomorrow and add the remaining 8 hours
