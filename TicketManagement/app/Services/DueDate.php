@@ -48,16 +48,10 @@ class DueDate implements DateCalculatorInterface
     {
         $date = Clock::now(); //get the datetime now
 
-        //case: ticket arrives before 09:00----------------------------------------------------------
+        //case: ticket arrives before 09:00-----------------------------------------------------------------------------
         if($this->isBeforeWorkingHour($date->toDateTime())){
 
-            //if it is Saturday, we add to days to reach Monday
-            if($this->isSaturday($date->toDateTime()))
-                $date->plusDays(2);
-
-            //if it is Sunday, we add one day to reach Monday
-            if($this->isSunday($date->toDateTime()))
-                $date->plusDays(1);
+            $date = $this->fromWeekendsToMonday($date); // check if the submit happened on the weekend
 
             // get the year/month/day from the full date form
             $year = substr($date->toDateTime(),0,10);
@@ -65,29 +59,38 @@ class DueDate implements DateCalculatorInterface
             //set the clock for 09:00 that day
             $date = Clock::at($year . " " ."09:00" );
 
-            //added 8 hours for that day, we are now at 17:00 (same day) - remaining hours: 8
-            $date->plusHours(8);
 
-            //we have to check again if the next day is gonna be saturday (that means the ticket arrived at friday before 9AM)
-           $nextDay = $date->plusDays(1);
-            if($this->isSaturday($nextDay->toDateTime())) {
-                //skip for Monday morning 09:00 + add the remaining 8 hours
-                $date->plusDays(2);
-                $year = substr($date->toDateTime(),0,10);
-                $date = Clock::at($year . " " ."17:00");
-            } else {
-                //it is not Saturday, go for the next day 09:00 and add the remaining 8 hours
-                $date->plusDays(1);
-                $year = substr($date->toDateTime(),0,10);
-                $date = Clock::at($year . " " ."17:00");
-            }
-                return $date->toDateTime();
+            $date->plusHours(8); //added 8 hours for that day, we are now at 17:00 (same day) - remaining hours: 8
+
+           $date = $this->plusHoursForNextDay($date);//skip for tomorrow and add the remaining 8 hours
+
+           return $date->toDateTime(); //final due date if ticket arrives any day before 09:00
 
 
-            //case: ticket arrives after 17:00--------------------------------------------------------
+            //case: ticket arrives after 17:00--------------------------------------------------------------------------
         } else if($this->isAfterWorkingHour($date->toDateTime())) {
+
+            $date = $this->fromWeekendsToMonday($date); // check if the submit happened on the weekend
+
+            //skip for the next day and set the time to 09:00 AM that day
+            $date->plusDays(1);
+            $year = substr($date->toDateTime(),0,10);
+            $date = Clock::at($year . " " ."09:00" );
+
+
+            $date->plusHours(8); //added 8 hours for that day, we are now at 17:00 (same day) - remaining hours: 8
+
+            $date = $this->plusHoursForNextDay($date); //skip for tomorrow and add the remaining 8 hours
+
+            return $date->toDateTime(); //final due date if ticket arrives any day after 09:00
+
+
+            //case: ticket arrives in working hours---------------------------------------------------------------------
+        } else if($this->isInWorkingHour($date->toDateTime())){
+
             //logic
             return null;
+
         }
     }
 
@@ -101,7 +104,7 @@ class DueDate implements DateCalculatorInterface
     public function isBeforeWorkingHour($date){
         $year = substr($date,0,10); //YYYY-MM-DD
 
-        if($date->isBefore(Clock::at($year .' 17:00'))){
+        if($date->isBefore(Clock::at($year .' 09:00'))){
             return true;
         } else {
             return false;
@@ -119,6 +122,23 @@ class DueDate implements DateCalculatorInterface
         $year = substr($date,0,10); //YYYY-MM-DD
 
         if($date->isAfter(Clock::at($year .' 17:00'))){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    /***
+     * check if the date is in working hour
+     *
+     * @param $date YYYY-MM-DD HH:MM:SS
+     * @return bool
+     */
+    public function isInWorkingHour($date){
+        $year = substr($date,0,10); //YYYY-MM-DD
+
+        if($date->isAfter(Clock::at($year .' 09:00')) && $date->isBefore(Clock::at($year .' 17:00'))){
             return true;
         } else {
             return false;
@@ -166,6 +186,48 @@ class DueDate implements DateCalculatorInterface
         else
         {
             return false;
+        }
+    }
+
+    /**
+     * If the ticket comes in the weekend, skip these two days and jump to the first working day, Monday
+     *
+     * @param $date
+     * @return Clock
+     */
+    public function fromWeekendsToMonday($date){
+        if($this->isSaturday($date->toDateTime())) {  //if it is Saturday, we add to days to reach Monday
+            $date->plusDays(2);
+            return $date;
+        } else if($this->isSunday($date->toDateTime())) { //if it is Sunday, we add one day to reach Monday
+            $date->plusDays(1);
+            return $date;
+        }else {
+            return $date;
+        }
+    }
+
+    /**
+     * Add plus 8 hours to next day (current time 9AM --> next day + 8 hours) weekend problem handled
+     *
+     * @param $date
+     * @return Clock
+     */
+    public function plusHoursForNextDay($date){
+        //we have to check again if the next day is gonna be saturday (that means the ticket arrived at friday before 9AM)
+        $nextDay = $date->plusDays(1);
+        if($this->isSaturday($nextDay->toDateTime())) {
+            //skip for Monday morning 09:00 + add the remaining 8 hours
+            $date->plusDays(2);
+            $year = substr($date->toDateTime(),0,10);
+            $date = Clock::at($year . " " ."17:00");
+            return $date;
+        } else {
+            //it is not Saturday, go for the next day 09:00 and add the remaining 8 hours
+            $date->plusDays(1);
+            $year = substr($date->toDateTime(),0,10);
+            $date = Clock::at($year . " " ."17:00");
+            return $date;
         }
     }
 
