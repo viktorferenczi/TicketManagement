@@ -25,43 +25,43 @@ class TicketSubmissionController extends Controller
            'description' =>'required|min:3|max:150',
        ]);
 
-       //case: customer registered already
        try {
-           // find the user if he/she is already registered with checking email and name combo
-           $customer = Customer::where('email', '=', $data['email'])
-                                ->where('name', '=', $data['name'])
-                                ->firstOrFail();
+           $customer = Customer::where('email', '=', $data['email'])->firstOrFail(); //search for customer by email
 
-           $ticket = new Ticket(); //create a new ticketSubmission for the customer in the DB
+           //case: impersonating
+           if($customer->name != $data['name']){  //Error: email is used with another customer name
+               return redirect()->back()->with('errorMessage','This email is already used by another customer with a different name.
+                                                Please call our support or contact the email owner.');
+           }
+
+           //case: customer found safe and sound
+           $ticket = new Ticket(); //create a new ticket for the customer in the DB
            $ticket->title = $data['title'];
            $ticket->description = $data['description'];
            $ticket->due_date = date('Y-m-d'); // due date logic
            $ticket->user_id = $customer->id;
-           $ticket->save(); // save the ticketSubmission for the already registered customer
+           $ticket->save(); // save the ticket for the already registered customer
 
-           //case: customer not registered yet
-       } catch  (ModelNotFoundException $e){
+
+       } catch (ModelNotFoundException $e){
 
            $customer = new Customer(); //create a new customer for the DB
            $ticket = new Ticket(); // create ticketSubmission for the customer for the DB
+
            $customer->name = $data['name'];
            $customer->email = $data['email'];
            $customer->save(); //save the customer in the DB
 
+
            $customerID = Customer::max('id'); //search the latest registered customer. Because of DB id incrementation,
-                                             // our customer will be the one who has the highest id.
+                                              //our customer will be the one who has the highest id.
 
            $ticket->title = $data['title'];
            $ticket->description = $data['description'];
            $ticket->due_date = date('Y-m-d'); // due date logic
            $ticket->user_id = $customerID;
-           $ticket->save(); // save the ticketSubmission related to the newly registered customer.
-
+           $ticket->save(); // save the ticket related to the newly registered customer.
        }
-
-       return redirect()->back()->with('message','Successful ticket submission!');
-
-
-
+       return redirect()->back()->with('successMessage','Successful ticket submission!');
    }
 }

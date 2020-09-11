@@ -4,9 +4,15 @@
     <div class="container pt-5">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                @if(session()->has('message'))
-                    <div class="alert alert-success">{{session()->get('message')}}</div>
+
+                @if(session()->has('successMessage'))
+                    <div class="alert alert-success">{{session()->get('successMessage')}}</div>
                 @endif
+
+                @if(session()->has('errorMessage'))
+                        <div class="alert alert-danger">{{session()->get('errorMessage')}}</div>
+                @endif
+
                     @if ($errors->any())
                         <div class="alert alert-danger">
                             <ul style="list-style-type: none">
@@ -16,6 +22,7 @@
                             </ul>
                         </div>
                     @endif
+
                 <h4>Please enter the following:</h4>
                 <div class="card">
                     <div class="card-header">{{ __('Ticket submission') }}</div>
