@@ -13,9 +13,6 @@
                   <strong>Customer email address:</strong> {{$customer->email}}
                    <a class="btn btn-primary btn-dark float-right" href="/{{$customer->id}}/tickets">View Tickets</a>
                </div>
-               <div class="card-footer">
-                   <strong>Customer has:</strong> {$customer->ticketCount tickets submitted.
-               </div>
            </div>
         @endforeach
         <div class="d-flex justify-content-center align-items-center">

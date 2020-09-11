@@ -24,6 +24,7 @@ Route::get('/customers','CustomerController@index')->name('customers.index'); //
  */
 Route::get('/ticket','TicketSubmissionController@index')->name('ticket.ticketSubmission.index'); //customer access
 Route::post('/ticket/create','TicketSubmissionController@create');
+Route::post('/tickets/order/{order}', 'TicketController@ticketSort');
 
 
 /*

@@ -13,7 +13,7 @@
                     <strong>Ticket description:</strong> {{$ticket->description}}
                 </div>
                 <div class="card-footer">
-                    <strong>Created at:</strong> {{$ticket->created_at}} - Duedate: {{$ticket->due_date}}
+                    <strong>Created at:</strong> {{$ticket->created_at->diffForHumans()}} - Duedate: {{$ticket->due_date}}
                 </div>
             </div>
         @endforeach
