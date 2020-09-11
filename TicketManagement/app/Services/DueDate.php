@@ -74,7 +74,7 @@ class DueDate implements DateCalculatorInterface
             $year = substr($date->toDateTime(),0,10);
             $date = Clock::at($year . " " ."09:00" );
 
-            
+
             $date->plusHours(8); //added 8 hours for that day, we are now at 17:00 (same day) - remaining hours: 8
 
             $date = $this->plusHoursForNextDay($date); //skip for tomorrow and add the remaining 8 hours
