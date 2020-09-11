@@ -34,4 +34,15 @@ class TicketController extends Controller
 
         return response()->json($tickets);
     }
+
+    public function customerTicketsSort(Request $request){
+        $sortPattern = $request['order'];
+        $customer = $request['customer'];
+
+        $tickets = DB::table('tickets')
+        ->where('tickets.user_id', '=', $customer)
+        ->orderBy($sortPattern, 'DESC')->get();
+
+        return response()->json($tickets);
+    }
 }

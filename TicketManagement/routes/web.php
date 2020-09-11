@@ -24,7 +24,7 @@ Route::get('/customers','CustomerController@index')->name('customers.index'); //
  */
 Route::get('/ticket','TicketSubmissionController@index')->name('ticket.ticketSubmission.index'); //customer access
 Route::post('/ticket/create','TicketSubmissionController@create');
-Route::post('/tickets/order/{order}', 'TicketController@ticketSort');
+Route::post('/tickets/order/{order}', 'TicketController@ticketListSort');
 
 
 /*
@@ -32,6 +32,7 @@ Route::post('/tickets/order/{order}', 'TicketController@ticketSort');
  */
 Route::get('/tickets','TicketController@index')->name('ticket.ticketList.index'); //mentor access
 Route::get('/{customer}/tickets','TicketController@show')->name('ticket.customerTickets.index'); //mentor access
+Route::post('/{customer}/tickets/order/{order}', 'TicketController@customerTicketsSort');
 
 
 /*

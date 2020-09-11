@@ -1,3 +1,8 @@
+/**
+ *
+ * Order for ticket list
+ *
+ */
 $(document).ready(function() {
     $("#created_at").click(function() {
         $.ajaxSetup({
@@ -79,6 +84,98 @@ $(document).ready(function() {
             }
         });
     });
+
+
+
+/**
+ *
+ * Order for customer ticket list
+ *
+ */
+$("#created_at_customer").click(function() {
+    let order = 'created_at';
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax({
+        url: '/'+$("#created_at_customer").val() +'/tickets/order/'+order,
+        method: 'post',
+        data: {
+            "customer":$("#created_at_customer").val(),
+            "order":'created_at'
+        },
+        success: function (data)
+        {
+            $("#taxList").empty();
+            data.forEach(ticket => {
+                //got yyyy-mm-ddt00:00:00.000z from backend in json
+                let date = ticket.created_at.slice(0,10);
+                let time = ticket.created_at.slice(11,19);
+                $("#taxList").append('<div class="card mb-5">' +
+                    '<div class="card-header">' +
+                    "<strong>Ticket title:</strong> " + ticket.title +
+                    "</div>" +
+                    '<div class="card-body">' +
+                    "<strong>Ticket description:</strong> "+ ticket.description +
+                    "</div>" +
+                    '<div class="card-footer">'+
+                    "<strong>Created at:</strong> " + date + " " + time + " - " + "Duedate: " + ticket.due_date +
+                    "</div>"+
+                    "</div>")
+            });
+            console.log(data);
+        },
+        error: function (data)
+        {
+            console.log('Error:', data.responseText);
+        }
+    });
+});
+
+
+$("#due_date_customer").click(function() {
+    let order = 'due_date';
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax({
+        url: '/'+$("#due_date_customer").val() +'/tickets/order/'+order,
+        method: 'post',
+        data: {
+            "customer":$("#due_date_customer").val(),
+            "order":'due_date'
+        },
+        success: function (data)
+        {
+            $("#taxList").empty();
+            data.forEach(ticket => {
+                //got yyyy-mm-ddt00:00:00.000z from backend in json
+                let date = ticket.created_at.slice(0,10);
+                let time = ticket.created_at.slice(11,19);
+                $("#taxList").append('<div class="card mb-5">' +
+                    '<div class="card-header">' +
+                    "<strong>Ticket title:</strong> " + ticket.title +
+                    "</div>" +
+                    '<div class="card-body">' +
+                    "<strong>Ticket description:</strong> "+ ticket.description +
+                    "</div>" +
+                    '<div class="card-footer">'+
+                    "<strong>Created at:</strong> " + date + " " + time + " - " + "Duedate: " + ticket.due_date +
+                    "</div>"+
+                    "</div>")
+            });
+            console.log(data);
+        },
+        error: function (data)
+        {
+            console.log('Error:', data.responseText);
+        }
+    });
+});
 
 
 });
