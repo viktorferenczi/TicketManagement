@@ -46,7 +46,7 @@ class DueDate implements DateCalculatorInterface
      */
     public function calculate()
     {
-        $date = Clock::at('2020-09-13 06:00');;
+        $date = Clock::at('2020-09-11 06:00');
 
         //case: ticket arrives before 09:00-----------------------------------------------------------------------------
         if($this->isBeforeWorkingHour()){
@@ -65,7 +65,7 @@ class DueDate implements DateCalculatorInterface
 
             $finalDate = $this->plusHoursForNextDay($newDatePlusHours);//skip for tomorrow and add the remaining 8 hours
 
-            dd($finalDate);
+
             return $finalDate->toDateTime(); //final due date if ticket arrives any day before 09:00
 
 
@@ -103,7 +103,7 @@ class DueDate implements DateCalculatorInterface
      * @return bool
      */
     public function isBeforeWorkingHour(){
-        $date = Clock::at('2020-09-13 06:00');
+        $date = Clock::now();
         $year = substr($date->toDateTime()->format('Y-m-d H:i:s'),0,10); //YYYY-MM-DD
 
 
@@ -220,8 +220,10 @@ class DueDate implements DateCalculatorInterface
         //we have to check again if the next day is gonna be saturday (that means the ticket arrived at friday before 9AM)
         $nextDay = $date->plusDays(1);
         if($this->isSaturday($nextDay->toDateTime())) {
+
             //skip for Monday morning 09:00 + add the remaining 8 hours
-            $newDate = $date->plusDays(2);
+            $newDate = $date->plusDays(3);
+
             $year = substr($newDate->toDateTime()->format('Y-m-d H:i:s'),0,10);
             $newDate = Clock::at($year . " " ."17:00");
             return $newDate;
