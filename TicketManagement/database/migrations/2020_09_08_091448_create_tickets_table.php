@@ -18,7 +18,7 @@ class CreateTicketsTable extends Migration
             $table->string("title");
             $table->text("description");
             $table->date("due_date");
-            $table->unsignedBigInteger("user_id");
+            $table->unsignedBigInteger("customer_id");
             $table->timestamps();
 
 

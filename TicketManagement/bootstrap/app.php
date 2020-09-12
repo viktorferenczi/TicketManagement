@@ -41,6 +41,10 @@ $app->singleton(
     App\Exceptions\Handler::class
 );
 
+$app->singleton(App\Interfaces\DateCalculatorInterface::class, function() {
+    return new App\Services\DueDate();
+});
+
 /*
 |--------------------------------------------------------------------------
 | Return The Application

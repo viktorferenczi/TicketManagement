@@ -15,7 +15,7 @@ class DateCalculatorServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('App\Interfaces\DateCalculatorInterface', function ($app) {
+        $this->app->bind('App\Interfaces\DateCalculatorInterface.php', function ($app) {
             return new DueDate();
         });
     }

@@ -6,9 +6,6 @@
 
         <title>Ticket Manager</title>
 
-        <!-- Scripts -->
-        <script type="text/javascript" src="{{ asset('js/adminVerification.js') }}"></script>
-
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
