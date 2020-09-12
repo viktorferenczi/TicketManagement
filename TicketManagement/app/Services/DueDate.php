@@ -15,7 +15,7 @@ class DueDate implements DateCalculatorInterface
      *
      * due date --> datetime.now + 16h
      *
-     * ticket can arrive outside of working ours
+     * ticket can arrive outside of working hours
      *
      * ticket arrives before: 09:00 -> 16h clock ticking starts at 09:00 that day
      *
@@ -46,7 +46,7 @@ class DueDate implements DateCalculatorInterface
      */
     public function calculate()
     {
-        $date = Clock::at('2020-09-06 06:00');
+        $date = Clock::at('2020-09-01 10:00');
 
         //case: ticket arrives before 09:00-----------------------------------------------------------------------------
         if($this->isBeforeWorkingHour()){
@@ -81,7 +81,7 @@ class DueDate implements DateCalculatorInterface
                 if($this->isSaturday($nextDay->toDateTime())) {
                     $newDate =  $date->plusDays(3);         // jump to monday
                 } else {
-                    $newDate = $this->skipForNextDay($date); // it was in weekday, skip for the next week day
+                    $newDate = $this->skipForNextDay($date); //if it was in weekday, skip for the next week day
                 }
             }
 
@@ -102,12 +102,33 @@ class DueDate implements DateCalculatorInterface
 
             //case: ticket arrives in working hours---------------------------------------------------------------------
         } else if($this->isInWorkingHour()){
-            dd("isin");
-            $date = Clock::now()->toDateTime(); //returns clock now() as testing
+
+            $hour = $date = Clock::at('2020-09-01 10:00:00')->toDateTime()->format('H'); // get the hour from current time
+            $min = $date = Clock::at('2020-09-01 10:00:00')->toDateTime()->format('i'); // get the min from current time
+            $sec = $date = Clock::at('2020-09-01 10:00:00')->toDateTime()->format('s'); // get the sec from current time
+
+            $totalSec = (intval($hour)*3600) + (intval($min)*60) + (intval($sec)); // total seconds from h,m,s
+            $workHoursEnd = 61200; //working hours end: 17:00:00 in seconds
+
+            $diff = $workHoursEnd - $totalSec; // 16h - diff
+            dd($this->formatTime($diff));
             return $date;
 
         }
     }
+
+    /**
+     * format seconds to HH:MM:SS
+     *
+     * @param $seconds
+     * @param string $f
+     * @return string
+     */
+    function formatTime($seconds,$f=':') // t = seconds, f = separator
+    {
+        return sprintf("%02d%s%02d%s%02d", floor($seconds/3600), $f, ($seconds/60)%60, $f, $seconds%60);
+    }
+
 
     /***
      * if not weekend, skip for the next day
@@ -129,7 +150,7 @@ class DueDate implements DateCalculatorInterface
      * @return bool
      */
     public function isBeforeWorkingHour(){
-        $date = Clock::at('2020-09-06 06:00');
+        $date = Clock::at('2020-09-01 10:00');
         $year = substr($date->toDateTime()->format('Y-m-d H:i:s'),0,10); //YYYY-MM-DD
 
 
@@ -147,13 +168,12 @@ class DueDate implements DateCalculatorInterface
      * @return bool
      */
     public function isAfterWorkingHour(){
-        $date = Clock::at('2020-09-06 06:00');
+        $date = Clock::at('2020-09-01 10:00');
         $year = substr($date->toDateTime()->format('Y-m-d H:i:s'),0,10); //YYYY-MM-DD
 
         if($date->isAfter(Clock::at($year .' 17:00'))){
             return true;
         } else {
-            dd("isafter false");
             return false;
         }
     }
@@ -165,8 +185,8 @@ class DueDate implements DateCalculatorInterface
      * @return bool
      */
     public function isInWorkingHour(){
-        $date = Clock::at('2020-09-06 06:00');
-        $year = substr(Clock::nowAsString('Y-m-d h-m'),0,10); //YYYY-MM-DD
+        $date = Clock::at('2020-09-01 10:00');
+        $year = substr($date->toDateTime()->format('Y-m-d H:i:s'),0,10); //YYYY-MM-DD
 
         if($date->isAfter(Clock::at($year .' 09:00')) && $date->isBefore(Clock::at($year .' 17:00'))){
             return true;
