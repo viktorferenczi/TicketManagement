@@ -27,7 +27,7 @@ class TicketSubmissionController extends Controller
        ]);
 
        try {
-           $customer = Customer::where('email', '=', $data['email'])->firstOrFail(); //search for customer by email
+           $customer = Customer::where('email', '=', $data['email'])->firstOrFail(); //first : search for customer by email
 
            //case: impersonating
            if($customer->name != $data['name']){  //Error: email is used with another customer name
@@ -39,9 +39,8 @@ class TicketSubmissionController extends Controller
            $ticket = new Ticket(); //create a new ticket for the customer in the DB
            $ticket->title = $data['title'];
            $ticket->description = $data['description'];
-           $ticket->due_date = date('Y-m-d'); // due date logic
-           echo $calculatorInstance->calculate();
-           $ticket->user_id = $customer->id;
+           $ticket->due_date = $calculatorInstance->calculate(); // due date logic
+           $ticket->customer_id = $customer->id;
            $ticket->save(); // save the ticket for the already registered customer
 
 
@@ -60,8 +59,8 @@ class TicketSubmissionController extends Controller
 
            $ticket->title = $data['title'];
            $ticket->description = $data['description'];
-           $ticket->due_date = date('Y-m-d'); // due date logic
-           $ticket->user_id = $customerID;
+           $ticket->due_date = $calculatorInstance->calculate(); // due date logic
+           $ticket->customer_id = $customerID;
            $ticket->save(); // save the ticket related to the newly registered customer.
        }
        return redirect()->back()->with('successMessage','Successful ticket submission!');
