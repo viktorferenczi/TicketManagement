@@ -12,7 +12,7 @@ Customers do not have access to admin routes thanks to a verification code.
 Admin verification code is stored in the .env file. 
 
 
-Admins have to go through a verification process, enter the code which will be stored in the config/session, and a custom middleware verifies that they have access to the admin panel.
+Admins have to go through a verification process, enter the code which will be stored in the config/session, and a custom created middleware verifies that they have access to the admin panel.
 
 
 Admins have to type the code only once until they are logging out.
