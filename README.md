@@ -29,6 +29,11 @@ If a customer name and email combination is stored in the database, a new person
 ------------------------------
 # Installation
 
+Laravel, Composer required!
+
+
+Laravel Framework 7.27.0
+
 1.
 rename ".env.example" file to ".env"  - enable .env file
 
