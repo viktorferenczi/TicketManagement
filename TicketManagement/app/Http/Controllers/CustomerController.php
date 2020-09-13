@@ -12,8 +12,7 @@ class CustomerController extends Controller
 
         $customers = DB::table('customers')
             ->join('tickets','customers.id' , '=', 'tickets.user_id')
-            ->select('customers.id','customers.name','customers.email'
-                    /*DB::raw('COUNT(CASE WHEN customers.id = tickets.user_id then 1 end) as ticketCount')*/)
+            ->select('customers.id','customers.name','customers.email')
             ->distinct() // make sure we return a single person once
             ->paginate(5);
 
