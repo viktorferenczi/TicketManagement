@@ -4,7 +4,7 @@
 Customers can submit tickets in a public page, admins can registen/login and view customers, tickets, and the tickets for a specific customer.
 
 
-Customers do not have access to admin routes thanks to the verification code.
+Customers do not have access to admin routes thanks to a verification code.
 
  !!!!! The admin verification code is: 12345 !!!!!
 
