@@ -11,7 +11,7 @@ class CustomerController extends Controller
     public function index(){
 
         $customers = DB::table('customers')
-            ->join('tickets','customers.id' , '=', 'tickets.user_id')
+            ->join('tickets','customers.id' , '=', 'tickets.customer_id')
             ->select('customers.id','customers.name','customers.email')
             ->distinct() // make sure we return a single person once
             ->paginate(5);

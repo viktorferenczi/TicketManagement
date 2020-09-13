@@ -22,7 +22,7 @@ class TicketController extends Controller
         $customer = Customer::find($customerID);
 
         $tickets = DB::table('tickets')
-        ->where('tickets.user_id' , "=", $customerID)
+        ->where('tickets.customer_id' , "=", $customerID)
         ->paginate(5);
 
         return view('ticket.customerTickets.index',compact('tickets','customer'));
@@ -40,7 +40,7 @@ class TicketController extends Controller
         $customer = $request['customer'];
 
         $tickets = DB::table('tickets')
-        ->where('tickets.user_id', '=', $customer)
+        ->where('tickets.customer_id', '=', $customer)
         ->orderBy($sortPattern, 'DESC')->get();
 
         return response()->json($tickets);
