@@ -46,87 +46,87 @@ class DueDate implements DateCalculatorInterface
      */
     public function calculate()
     {
-        $date = Clock::at('2020-09-01 10:00');
+        $date = Clock::now(); //submit date
 
         //case: ticket arrives before 09:00-----------------------------------------------------------------------------
         if($this->isBeforeWorkingHour()){
+            // I cloud set the due date to tuesday 17:00 becasue if the ticket arrives in the weekends, it will be always tuesday 17PM
+            //but in this case we will add the hours separately
 
             $newDate = $this->fromWeekendsToMonday($date); // check if the submit happened on the weekend
-
             $year = substr($newDate->toDateTime()->format('Y-m-d H:i:s'),0,10);// get the year/month/day from the full date form
-
             $newDate = Clock::at($year . " " ."09:00" ); //set the clock for 09:00 that day
-
-
 
             $newDatePlusHours = $newDate->plusHours(8); //added 8 hours for that day, we are now at 17:00 (same day) - remaining hours: 8
 
-
-
             $finalDate = $this->plusHoursForNextDay($newDatePlusHours);//skip for tomorrow and add the remaining 8 hours
 
-            dd($finalDate);
             return $finalDate->toDateTime(); //final due date if ticket arrives any day before 09:00
-
 
             //case: ticket arrives after 17:00--------------------------------------------------------------------------
         } else if($this->isAfterWorkingHour()) {
-
             $dateTime = $date->toDateTime();
 
             if($this->isSaturday($dateTime) == true || $this->isSunday($dateTime) == true){ //if it is one of the weekdays
                 $newDate = $this->fromWeekendsToMonday($date); // jump to monday
             } else {
-                $nextDay = $date->plusDays(1);              // if it is friday, the next day is gonna be a weekend then
+                $nextDay = $date->plusDays(1);              //next day: if it is friday, the next day is gonna be a weekend then
                 if($this->isSaturday($nextDay->toDateTime())) {
                     $newDate =  $date->plusDays(3);         // jump to monday
                 } else {
                     $newDate = $this->skipForNextDay($date); //if it was in weekday, skip for the next week day
                 }
             }
-
             //set the time to 09:00 AM that day
             $year = substr($newDate->toDateTime()->format('Y-m-d H:i:s'),0,10);
             $newDate = Clock::at($year . " " ."09:00" );
 
             $newDatePlusHours = $newDate->plusHours(8); //added 8 hours for that day, we are now at 17:00 (same day) - remaining hours: 8
-
             $finalDate = $this->plusHoursForNextDay($newDatePlusHours); //skip for tomorrow and add the remaining 8 hours
 
-            dd($finalDate);
             return $finalDate->toDateTime(); //final due date if ticket arrives any day after 09:00
-
-
-
-
 
             //case: ticket arrives in working hours---------------------------------------------------------------------
         } else if($this->isInWorkingHour()){
+            $estimateTime = 16; // current 16h estimate time
+            $date = Clock::now(); // date to set
 
-            $hour = $date = Clock::at('2020-09-01 10:00:00')->toDateTime()->format('H'); // get the hour from current time
-            $min = $date = Clock::at('2020-09-01 10:00:00')->toDateTime()->format('i'); // get the min from current time
-            $sec = $date = Clock::at('2020-09-01 10:00:00')->toDateTime()->format('s'); // get the sec from current time
+            //case: the ticket arrives in the weekends (in working hours ofc)
+            $date = $this->fromWeekendsToMonday($date); //skip the weekend
+            $year = substr($date->toDateTime()->format('Y-m-d H:i:s'),0,10);
+            $date = Clock::at($year . " " ."09:00" ); //set the clock for 09:00 that day
 
-            $totalSec = (intval($hour)*3600) + (intval($min)*60) + (intval($sec)); // total seconds from h,m,s
-            $workHoursEnd = 61200; //working hours end: 17:00:00 in seconds
+            while($estimateTime != 0) {
+                $year = substr($date->toDateTime()->format('Y-m-d H:i:s'),0,10);//get the y/m/d from date var.
 
-            $diff = $workHoursEnd - $totalSec; // 16h - diff
-            dd($this->formatTime($diff));
-            return $date;
+                while($date->toDateTime()->format('Y-m-d H:i:s') !== Clock::at($year . ' 17:00:00')->toDateTime()->format('Y-m-d H:i:s')){
+                    $date = $date->plusHours(1);
+                    if( 1 <= $estimateTime ){ // make sure to do not go minus
+                        $estimateTime--;
+                        if($estimateTime == 0)
+                            return $date->toDateTime(); // 0 estimated hour remaining, we got it!
+                    } else {
+                        break;
+                    }
 
+                }
+                //while are out of the while loop which means we are the same day at 17:00.
+                //we have to go for the next day but we have to check if it is gonna be a weekend or not.
+                //in case if it is a weekend that means the ticket arrived in friday
+
+                $nextDay = $date->plusDays(1)->toDateTime(); // the next day
+
+                if($this->isSaturday($nextDay) == true) { //check if it is saturday then skip to monday 09:00
+                    $date = $date->plusDays(3);
+                    $year = substr($date->toDateTime()->format('Y-m-d H:i:s'),0,10);
+                    $date = Clock::at($year . " 09:00:00");
+                } else { //if not, skip for the next workday start. ---> 09:00
+                    $date = $this->skipForNextDay($date);
+                    $year = substr($date->toDateTime()->format('Y-m-d H:i:s'),0,10);
+                    $date = Clock::at($year . " 09:00:00");
+                }
+            }
         }
-    }
-
-    /**
-     * format seconds to HH:MM:SS
-     *
-     * @param $seconds
-     * @param string $f
-     * @return string
-     */
-    function formatTime($seconds,$f=':') // t = seconds, f = separator
-    {
-        return sprintf("%02d%s%02d%s%02d", floor($seconds/3600), $f, ($seconds/60)%60, $f, $seconds%60);
     }
 
 
@@ -150,9 +150,8 @@ class DueDate implements DateCalculatorInterface
      * @return bool
      */
     public function isBeforeWorkingHour(){
-        $date = Clock::at('2020-09-01 10:00');
+        $date = Clock::now(); //date to set
         $year = substr($date->toDateTime()->format('Y-m-d H:i:s'),0,10); //YYYY-MM-DD
-
 
         if($date->isBefore(Clock::at($year .' 09:00'))){
             return true;
@@ -168,7 +167,7 @@ class DueDate implements DateCalculatorInterface
      * @return bool
      */
     public function isAfterWorkingHour(){
-        $date = Clock::at('2020-09-01 10:00');
+        $date = Clock::now(); //date to set
         $year = substr($date->toDateTime()->format('Y-m-d H:i:s'),0,10); //YYYY-MM-DD
 
         if($date->isAfter(Clock::at($year .' 17:00'))){
@@ -185,13 +184,12 @@ class DueDate implements DateCalculatorInterface
      * @return bool
      */
     public function isInWorkingHour(){
-        $date = Clock::at('2020-09-01 10:00');
+        $date = Clock::now(); //date to set
         $year = substr($date->toDateTime()->format('Y-m-d H:i:s'),0,10); //YYYY-MM-DD
 
-        if($date->isAfter(Clock::at($year .' 09:00')) && $date->isBefore(Clock::at($year .' 17:00'))){
+        if($date->isAfter(Clock::at($year .' 08:59')) && $date->isBefore(Clock::at($year .' 17:01'))){
             return true;
         } else {
-            dd("isinworkinghour false");
             return false;
         }
     }
@@ -207,6 +205,7 @@ class DueDate implements DateCalculatorInterface
         $dt1 = strtotime($date->format('Y-m-d H:i:s')); //accepts string, i had to format datetime
         $dt2 = date("l", $dt1);
         $dt3 = strtolower($dt2);
+
         if($dt3 == "saturday" )
         {
            return true;
@@ -228,6 +227,7 @@ class DueDate implements DateCalculatorInterface
         $dt1 = strtotime($date->format('Y-m-d H:i:s')); //accepts string, i had to format datetime
         $dt2 = date("l", $dt1);
         $dt3 = strtolower($dt2);
+
         if($dt3 == "sunday")
         {
             return true;
@@ -238,6 +238,7 @@ class DueDate implements DateCalculatorInterface
         }
     }
 
+
     /**
      * If the ticket comes in the weekend, skip these two days and jump to the first working day, Monday
      *
@@ -245,7 +246,7 @@ class DueDate implements DateCalculatorInterface
      * @return Clock
      */
     public function fromWeekendsToMonday($date){
-        if($this->isSaturday($date->toDateTime())) {  //if it is Saturday, we add to days to reach Monday
+        if($this->isSaturday($date->toDateTime()) == true) {  //if it is Saturday, we add to days to reach Monday
             $newdate = $date->plusDays(2);
             return $newdate;
         } else if($this->isSunday($date->toDateTime())) { //if it is Sunday, we add one day to reach Monday
@@ -255,6 +256,7 @@ class DueDate implements DateCalculatorInterface
             return $date;
         }
     }
+
 
     /**
      * Add plus 8 hours to next day (current time 9AM --> next day + 8 hours) weekend problem handled
@@ -281,7 +283,4 @@ class DueDate implements DateCalculatorInterface
             return $newDate;
         }
     }
-
-
-
 }
