@@ -1,5 +1,5 @@
 # TicketManagement
-----------------------------
+
 
 Customers can submit tickets in a public page, admins can registen/login and view customers, tickets, and the tickets for a specific customer.
 
