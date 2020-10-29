@@ -6,7 +6,7 @@ Customers can submit tickets in a public page, admins can registen/login and vie
 
 Customers do not have access to admin routes thanks to a verification code.
 
- !!!!! The admin verification code is: 12345 !!!!!
+The admin verification code is: 12345
 
 
 Admin verification code is stored in the .env file. 
@@ -25,27 +25,3 @@ Customer email must be unique, and customer email-name combination must be uniqu
 
 
 If a customer name and email combination is stored in the database, a new person can not submit a ticket with the same email and different name.
-
-------------------------------
-# Installation
-
-Laravel, Composer required!
-
-
-Laravel Framework 7.27.0
-
-1.
-rename ".env.example" file to ".env"  - enable .env file
-
-
-2.
-create file: "database.sqlite" in the "database" folder  - we are using SQLite.
-
-3.
-composer install - command cmd/terminal - install requirements
-
-4.
-php artisan migrate - command cmd/terminal - migrate the DB with the help of migrations
-
-5.
-php artisan serve - server run. default port: 8000
